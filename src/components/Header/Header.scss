@@ -1,0 +1,42 @@
+@import '../../styles/abstract/mixins.scss';
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/placeholders.scss';
+
+.header {
+  padding: 4rem 0;
+  background-color: $bg-primary;
+  border-bottom: 1px solid $border;
+
+  nav {
+    width: 100%;
+  }
+}
+
+.navigation {
+  @include list;
+  margin: auto;
+  max-width: 128rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation__box {
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+
+  &:hover {
+    background-color: $white;
+  }
+}
+
+.navigation__item {
+  @include link;
+  @include text($font-size: 1.6rem);
+  width: 14rem;
+  display: flex;
+
+  &_type_active {
+    @include text($font-size: 1.6rem, $font-weight: $fw-semibold);
+  }
+}

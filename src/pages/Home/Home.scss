@@ -1,0 +1,44 @@
+@import '../../styles/abstract/mixins.scss';
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/placeholders.scss';
+
+.home {
+  padding: 10rem 0;
+}
+
+.home__container {
+  @include list;
+  width: 100%;
+  display: grid;
+  gap: 20px 17px;
+  grid-template-columns: repeat(auto-fit, 282px);
+  justify-content: center;
+}
+
+.home__card {
+  @include link;
+  width: 100%;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-primary;
+  border: 1px solid $border;
+  border-radius: 1rem;
+  @extend %transition-all;
+
+  @include media-hover {
+    &:hover {
+      background-color: $bg-active;
+      border: 1px solid $border-active;
+    }
+  }
+}
+
+.home__title {
+  @include section-title;
+  max-width: 19rem;
+  text-align: center;
+}

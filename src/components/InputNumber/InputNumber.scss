@@ -1,0 +1,75 @@
+@import '../../styles/abstract/placeholders.scss';
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/mixins.scss';
+
+.input-number {
+  width: 26rem;
+  position: relative;
+}
+
+.input-number__name {
+  @include text($font-size: 16px);
+}
+
+.input-number__field {
+  @include text;
+  padding: 1.6rem;
+  width: 55%;
+  box-sizing: border-box;
+  background-color: $white;
+  border: 1px solid $border;
+  border-radius: 8px;
+  caret-color: $black;
+  outline: none;
+
+  &:focus {
+    background-color: $white;
+    border: 1px solid $border-active;
+  }
+
+  &_type_error {
+    color: $error;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $black;
+    @extend %font-prim;
+    font-style: normal;
+  }
+
+  &::-moz-placeholder {
+    color: $black;
+    @extend %font-prim;
+    font-style: normal;
+  }
+
+  &::-ms-input-placeholder {
+    color: $black;
+    @extend %font-prim;
+    font-style: normal;
+  }
+
+  &::placeholder {
+    color: $black;
+    @extend %font-prim;
+    font-style: normal;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px $white inset;
+  }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: $black;
+  }
+}
+
+.input-number__error {
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  color: $error;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}

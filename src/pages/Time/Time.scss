@@ -1,0 +1,15 @@
+@import '../../styles/abstract/mixins.scss';
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/placeholders.scss';
+
+.time {
+  padding: 4rem 0;
+}
+
+.time__container {
+  padding: 1rem;
+  width: 100rem;
+  background-color: $bg-primary;
+  border: 1px solid $border;
+  border-radius: 1rem;
+}
