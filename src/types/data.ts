@@ -1,4 +1,6 @@
 export interface ITime {
+  know_I: boolean;
+  know_m: boolean;
   m: number | null;
   units_m: string;
   I: number | null;

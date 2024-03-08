@@ -1,5 +1,6 @@
-import './Input.scss';
 import { ChangeEvent } from 'react';
+
+import './Input.scss';
 
 interface InputProps {
   name: string;
@@ -28,10 +29,11 @@ export const Input = ({
         {title}
         {isRequired && <span>*</span>}
       </span>
-      <div className='input__wrap'>
+      <div className="input__wrap">
         <input
-          className={`input__field${(errors[name] && ' input__field_type_error') || ''
-            }`}
+          className={`input__field${
+            (errors[name] && ' input__field_type_error') || ''
+          }`}
           name={name}
           value={values[name] || ''}
           onChange={handleChange}

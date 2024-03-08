@@ -8,6 +8,8 @@ import {
 import { ITime } from '../types/data';
 
 const initialState: ITime = {
+  know_m: false,
+  know_I: false,
   m: null,
   units_m: 'кг',
   I: null,
@@ -43,9 +45,13 @@ const timeSlice = createSlice({
         state[key] = value;
       }
     },
+    setCheckbox(state, action: PayloadAction<string>) {
+      const key = action.payload;
+      if (key === 'know_m' || key === 'know_I') state[key] = !state[key];
+    },
   },
 });
 
-export const { addTimeUnits } = timeSlice.actions;
+export const { addTimeUnits, setCheckbox } = timeSlice.actions;
 
 export default timeSlice.reducer;

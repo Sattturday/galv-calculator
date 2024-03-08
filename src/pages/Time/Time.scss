@@ -8,8 +8,12 @@
 
 .time__container {
   padding: 1rem;
-  width: 100rem;
+  min-width: 85rem;
   background-color: $bg-primary;
   border: 1px solid $border;
   border-radius: 1rem;
+}
+
+.time__wrap {
+  padding: 0 0 3rem;
 }
