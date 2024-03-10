@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
 
+import { addTimeUnits } from '../../store/timeSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { unitsButtons } from '../../utils/data';
 import { ITime } from '../../types/data';
 
 import './Units.scss';
-import { addTimeUnits } from '../../store/timeSlice';
 
 interface UnitsProps {
   unitKey: keyof ITime;
@@ -14,7 +14,8 @@ interface UnitsProps {
 
 export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
   const units: { [key: string]: string }[] = unitsButtons[unitKey];
-  const initialButtonName = useAppSelector(state => state.time[unitKey]);
+  const stateUnit = useAppSelector(state => state.time[unitKey]);
+  const initialButtonName = typeof stateUnit === 'string' ? stateUnit : '';
 
   const [isActive, setIsActive] = useState(false);
   const [buttonName, setButtonName] = useState(initialButtonName);
@@ -31,12 +32,10 @@ export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
   };
 
   const onClickUnitHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // sortHandler(e.target.id);
     // Устанавливаем название кнопки в зависимости от выбранной опции
     const selectedButton = units.find(button => button.id === e.target.id);
     if (selectedButton) {
       setButtonName(selectedButton.title);
-      // dispatch(addTimeUnits_m(selectedButton.title));
       dispatch(addTimeUnits({ key: unitKey, value: selectedButton.title }));
     }
 

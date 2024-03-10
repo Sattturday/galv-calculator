@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Form } from '../../components/Form';
-import { Input } from '../../components/Input';
+import { Input } from '../../components/InputMaterial';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { Units } from '../../components/Units';
 import { InputNumber } from '../../components/InputNumber';
@@ -10,8 +10,7 @@ import { setCheckbox } from '../../store/timeSlice';
 import { InputCheckbox } from '../../components/InputCheckbox';
 
 import './Time.scss';
-
-// const knownValuesTypes = ['none', 'only_m', 'only_I', 'all'] as const;
+import { buildParamsObject } from '../../utils/buildParams';
 
 export const Time: React.FC = () => {
   const [knownValues, setKnownValues] = useState('none');
@@ -19,6 +18,8 @@ export const Time: React.FC = () => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
   const dispatch = useAppDispatch();
+
+  const time = useAppSelector(state => state.time);
   const { know_m, know_I } = useAppSelector(state => state.time);
 
   const checkboxHandler = (key: string) => {
@@ -27,8 +28,7 @@ export const Time: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log('values:', values);
+    buildParamsObject(time);
     resetForm();
   };
 
@@ -66,7 +66,7 @@ export const Time: React.FC = () => {
           >
             <div className="time__wrap">
               <Input
-                name="m"
+                name="material"
                 title="Материал покрытия"
                 placeholder="Начните вводить текст"
                 type="text"
@@ -99,6 +99,7 @@ export const Time: React.FC = () => {
                 handleChange={handleChange}
                 placeholder="0,00"
                 step="0.01"
+                max="100"
               />
               <p className="fieldset__percent">%</p>
             </fieldset>
