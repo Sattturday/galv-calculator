@@ -39,8 +39,10 @@ export const InputNumber = ({
   return (
     <label className="input-number">
       <input
-        className={`input-number__field${(errors[name] && ' input-number__field_type_error') || ''
-          }`}
+        className={
+          `input-number__field${(errors[name] && ' input-number__field_type_error') || ''
+          }`
+        }
         name={name}
         placeholder={placeholder}
         min="0"
