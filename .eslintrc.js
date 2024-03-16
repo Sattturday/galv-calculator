@@ -28,8 +28,8 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'no-var': 'error',
     'prefer-const': 'warn',
     'react/prop-types': 'off',
