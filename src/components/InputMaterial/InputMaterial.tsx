@@ -86,8 +86,9 @@ export const InputMaterial = ({
       </span>
       <div className="input__wrap">
         <input
-          className={`input__field${(errors[name] && ' input__field_type_error') || ''
-            }`}
+          className={`input__field${
+            (errors[name] && ' input__field_type_error') || ''
+          }`}
           name={name}
           value={values[name] || ''}
           onChange={onChange}
