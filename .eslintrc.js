@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
@@ -29,7 +28,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'warn',
     'no-var': 'error',
     'prefer-const': 'warn',
     'react/prop-types': 'off',
