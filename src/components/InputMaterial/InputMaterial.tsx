@@ -49,6 +49,7 @@ export const InputMaterial = ({
 
   const handlerMaterialClick = (mat: IMaterial) => {
     setValues({
+      ...values,
       [name]: mat.name,
       q: mat.q,
       p: mat.p,
@@ -85,9 +86,8 @@ export const InputMaterial = ({
       </span>
       <div className="input__wrap">
         <input
-          className={`input__field${
-            (errors[name] && ' input__field_type_error') || ''
-          }`}
+          className={`input__field${(errors[name] && ' input__field_type_error') || ''
+            }`}
           name={name}
           value={values[name] || ''}
           onChange={onChange}
