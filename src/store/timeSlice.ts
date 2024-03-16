@@ -5,7 +5,7 @@ import {
   Action,
 } from '@reduxjs/toolkit';
 
-import { IMaterial, ITime } from '../types/data';
+import { IMaterial, ITime, ITimeResult } from '../types/data';
 
 export const fetchMaterial = createAsyncThunk<
   IMaterial[],
@@ -25,7 +25,28 @@ export const fetchMaterial = createAsyncThunk<
   return data;
 });
 
+export const fetchTime = createAsyncThunk<
+  ITimeResult,
+  { [key: string]: string | number | null },
+  { rejectValue: string }
+>('time/fetchTime', async function (params, { rejectWithValue }) {
+  const response = await fetch('http://89.104.70.160/api/time/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (!response.ok) {
+    return rejectWithValue('Server Error!');
+  }
+
+  return (await response.json()) as ITimeResult;
+});
+
 const initialState: ITime = {
+  resultTime: null,
   matList: [],
   know_m: false,
   know_I: false,
@@ -88,6 +109,9 @@ const timeSlice = createSlice({
         state[key] = value;
       }
     },
+    clearMatList(state) {
+      state.matList = [];
+    },
   },
   extraReducers: builder => {
     builder
@@ -99,6 +123,14 @@ const timeSlice = createSlice({
         state.matList = action.payload;
         state.loading = false;
       })
+      .addCase(fetchTime.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTime.fulfilled, (state, action) => {
+        state.resultTime = action.payload;
+        state.loading = false;
+      })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
         state.loading = false;
@@ -106,7 +138,8 @@ const timeSlice = createSlice({
   },
 });
 
-export const { addTimeUnits, setCheckbox, setNumberValue } = timeSlice.actions;
+export const { addTimeUnits, setCheckbox, setNumberValue, clearMatList } =
+  timeSlice.actions;
 
 export default timeSlice.reducer;
 

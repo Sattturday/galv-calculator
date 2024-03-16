@@ -17,3 +17,44 @@
 .time__wrap {
   padding: 0 0 3rem;
 }
+
+.time__result {
+  margin: 2rem auto 1rem;
+  width: 38rem;
+}
+
+.time__list {
+  @include list;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  p {
+    @include text;
+  }
+
+  span {
+    @include text($font-weight: $fw-semibold);
+  }
+}
+
+.time__button {
+  @include button;
+  @include text($color: $white);
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 16rem;
+  min-height: 5rem;
+  border-radius: 1rem;
+  background-color: $button;
+  outline: none;
+  @extend %transition-all;
+
+  &:hover {
+    background-color: $button-hover;
+  }
+
+  &:active {
+    background-color: $button-hover;
+  }
+}

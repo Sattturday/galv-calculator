@@ -1,4 +1,5 @@
 export interface ITime {
+  resultTime: ITimeResult | null;
   matList: IMaterial[];
   know_I: boolean;
   know_m: boolean;
@@ -25,4 +26,10 @@ export interface IMaterial {
   name: string;
   q: string;
   p: string;
+}
+
+export interface ITimeResult {
+  t: number;
+  t_min: number;
+  t_hour: number;
 }

@@ -1,6 +1,10 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
-import { fetchMaterial, setNumberValue } from '../../store/timeSlice';
+import {
+  clearMatList,
+  fetchMaterial,
+  setNumberValue,
+} from '../../store/timeSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { IMaterial } from '../../types/data';
 
@@ -15,28 +19,40 @@ interface InputProps {
   isRequired?: boolean;
   errors: Record<string, string>;
   values: Record<string, string>;
+  setValues: (values: { [key: string]: string }) => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({
+export const InputMaterial = ({
   name,
   title,
   isRequired,
   errors,
   values,
+  setValues,
   handleChange,
   ...props
 }: InputProps) => {
+  const [showMatList, setShowMatList] = useState(false);
   const dispatch = useAppDispatch();
   const { matList } = useAppSelector(state => state.time);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(fetchMaterial(e.target.value));
+    if (e.target.value.length !== 0) {
+      dispatch(fetchMaterial(e.target.value));
+    } else {
+      dispatch(clearMatList());
+    }
     handleChange(e);
     console.log('e:', e.target.value);
   };
 
   const handlerMaterialClick = (mat: IMaterial) => {
+    setValues({
+      [name]: mat.name,
+      q: mat.q,
+      p: mat.p,
+    });
     const qValue = +mat.q;
     const pValue = +mat.p;
     dispatch(
@@ -51,46 +67,52 @@ export const Input = ({
         value: pValue,
       }),
     );
+    dispatch(clearMatList());
+    setShowMatList(false);
   };
 
+  useEffect(() => {
+    if (matList.length !== 0) {
+      setShowMatList(true);
+    }
+  }, [matList]);
+
   return (
-    <div className="material">
-      <label className="input">
-        <span className="input__name">
-          {title}
-          {isRequired && <span>*</span>}
-        </span>
-        <div className="input__wrap">
-          <input
-            className={`input__field${
-              (errors[name] && ' input__field_type_error') || ''
-            }`}
-            name={name}
-            value={values[name] || ''}
-            onChange={onChange}
-            required
-            {...props}
-          />
-          <span className="input__error">{errors[name]}</span>
-        </div>
-      </label>
-      {matList.length !== 0 && (
-        <ul className="material__list">
-          {matList.map((material, index) => {
-            return (
-              <li className="material__item" key={index}>
-                <button
-                  className="material__button"
-                  type="button"
-                  onClick={() => handlerMaterialClick(material)}
-                >
-                  {material.name}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+    <label className="input">
+      <span className="input__name">
+        {title}
+        {isRequired && <span>*</span>}
+      </span>
+      <div className="input__wrap">
+        <input
+          className={`input__field${
+            (errors[name] && ' input__field_type_error') || ''
+          }`}
+          name={name}
+          value={values[name] || ''}
+          onChange={onChange}
+          required
+          {...props}
+        />
+        {showMatList && (
+          <ul className={`material ${showMatList ? 'material_active' : ''}`}>
+            {matList.map((material, index) => {
+              return (
+                <li className="material__item" key={index}>
+                  <button
+                    className="material__button"
+                    type="button"
+                    onClick={() => handlerMaterialClick(material)}
+                  >
+                    {material.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+        <span className="input__error">{errors[name]}</span>
+      </div>
+    </label>
   );
 };
