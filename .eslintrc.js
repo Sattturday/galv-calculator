@@ -26,7 +26,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['react'],
   rules: {
     'no-unused-vars': 'off',
     'no-var': 'error',
