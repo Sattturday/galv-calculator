@@ -51,20 +51,20 @@ const initialState: ITime = {
   know_m: false,
   know_I: false,
   m: null,
-  units_m: 'кг',
+  units_m: { title: 'кг', id: 'kg', param: 'кг' },
   I: null,
-  units_I: 'А',
+  units_I: { title: 'А', id: 'A', param: 'А' },
   q: null,
-  units_q: 'мг/Кл',
+  units_q: { title: 'мг/Кл', id: 'mg/Kl', param: 'мг/Кл' },
   wt: null,
   S: null,
-  units_S: 'м²',
+  units_S: { title: 'м²', id: 'm2', param: 'м2' },
   j: null,
-  units_j: 'А/дм²',
+  units_j: { title: 'А/дм²', id: 'A/dm2', param: 'А/дм2' },
   p: null,
-  units_p: 'кг/м³',
+  units_p: { title: 'кг/м³', id: 'kg/m3', param: 'кг/м3' },
   h: null,
-  units_h: 'мкм',
+  units_h: { title: 'мкм', id: 'mkm', param: 'мкм' },
   loading: false,
   error: null,
 };
@@ -73,7 +73,7 @@ const timeSlice = createSlice({
   name: 'time',
   initialState,
   reducers: {
-    addTimeUnits(state, action: PayloadAction<{ key: string; value: string }>) {
+    addTimeUnits(state, action: PayloadAction<{ key: string; value: { [key: string]: string } }>) {
       const { key, value } = action.payload;
       if (
         key === 'units_m' ||

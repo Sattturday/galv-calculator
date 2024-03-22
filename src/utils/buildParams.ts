@@ -2,7 +2,7 @@ import { ITime } from '../types/data';
 
 export function buildParamsObject(values: ITime) {
   const params: { [key: string]: string | number | null } = {};
-
+  console.log('values:', values)
   for (const key in values) {
     if (
       key === 'know_m' ||
@@ -19,7 +19,10 @@ export function buildParamsObject(values: ITime) {
       key === 'units_S' ||
       key === 'units_j' ||
       key === 'units_p' ||
-      key === 'units_h' ||
+      key === 'units_h' 
+      ) {
+      params[key] = values[key].param;
+    } else if (
       key === 'm' ||
       key === 'I' ||
       key === 'q' ||

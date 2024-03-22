@@ -7,6 +7,7 @@ import { unitsButtons } from '../../utils/data';
 import { ITime } from '../../types/data';
 
 import './Units.scss';
+import { hasOwnPropertyFromUnknown } from '../../utils/hasOwnPropertyFromUnknown';
 
 interface UnitsProps {
   unitKey: keyof ITime;
@@ -15,7 +16,16 @@ interface UnitsProps {
 export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
   const units: { [key: string]: string }[] = unitsButtons[unitKey];
   const stateUnit = useAppSelector(state => state.time[unitKey]);
-  const initialButtonName = typeof stateUnit === 'string' ? stateUnit : '';
+
+  let initialButtonName: string;
+  if (stateUnit !== null &&
+    hasOwnPropertyFromUnknown(stateUnit, 'title') &&
+    typeof stateUnit.title === 'string') {
+    initialButtonName = stateUnit.title;
+  } else {
+    console.error('Error 82a9e109-c16f-46c5-b103-3c80be2aade8');
+    initialButtonName = '';
+  }
 
   const [isActive, setIsActive] = useState(false);
   const [buttonName, setButtonName] = useState(initialButtonName);
@@ -36,7 +46,7 @@ export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
     const selectedButton = units.find(button => button.id === e.target.id);
     if (selectedButton) {
       setButtonName(selectedButton.title);
-      dispatch(addTimeUnits({ key: unitKey, value: selectedButton.title }));
+      dispatch(addTimeUnits({ key: unitKey, value: selectedButton }));
     }
 
     onClickNavTab();

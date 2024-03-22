@@ -45,7 +45,7 @@ export const Time: React.FC = () => {
     e.preventDefault();
     const params = buildParamsObject(time);
     dispatch(fetchTime(params));
-    resetForm();
+    // resetForm();
     setShowResult(true);
   };
 
