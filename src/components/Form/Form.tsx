@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode } from 'react';
+import { FormEvent, MouseEventHandler, ReactNode } from 'react';
 import './Form.scss';
 
 interface FormProps {
@@ -6,6 +6,7 @@ interface FormProps {
   buttonText: string;
   loadingText: string;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  handleReset: () => void;
   isLoading: boolean;
   isValid: boolean;
   children: ReactNode;
@@ -16,6 +17,7 @@ export const Form = ({
   buttonText,
   loadingText,
   onSubmit,
+  handleReset,
   isLoading,
   isValid,
   children,
@@ -27,16 +29,21 @@ export const Form = ({
       onSubmit={onSubmit}
       noValidate
     >
+      <div className="form__buttons">
+        <button
+          className={`form__button form__button_type_${name}${(!isValid && ' form__button_disabled') || ''
+            }`}
+          type="submit"
+          disabled={!isValid}
+        >
+          <span>{isLoading ? loadingText : buttonText}</span>
+        </button>
+        <button className="form__button" onClick={handleReset} type='button'>
+          Очистить форму
+        </button>
+      </div>
+
       {children}
-      <button
-        className={`form__submit form__submit_type_${name}${
-          (!isValid && ' form__submit_disabled') || ''
-        }`}
-        type="submit"
-        disabled={!isValid}
-      >
-        <span>{isLoading ? loadingText : buttonText}</span>
-      </button>
     </form>
   );
 };

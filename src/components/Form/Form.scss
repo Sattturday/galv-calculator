@@ -6,11 +6,19 @@
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-rows: repeat(auto-fit, auto);
   align-items: end;
 }
 
-.form__submit {
+.form__buttons {
+  padding: 2rem 0 3rem;
+  width: 34rem;
+  display: flex;
+  gap: 1rem;
+  justify-self: end;
+}
+
+.form__button {
   @include button;
   @include text($color: $white);
   width: 100%;
