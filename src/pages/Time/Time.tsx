@@ -56,8 +56,8 @@ export const Time: React.FC = () => {
 
   const resetNumberValue = (possibleKeys: string[], time: ITime) => {
     const timeKeys = Object.keys(time);
-    let key: keyof ITime | undefined;
     for (const possibleKey of possibleKeys) {
+      let key: keyof ITime | undefined;
       if (timeKeys.includes(possibleKey)) key = possibleKey as keyof ITime;
       if (key !== undefined && time[key] !== null) {
         dispatch(setNumberValue({ key: key, value: null }));
