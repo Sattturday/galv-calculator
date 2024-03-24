@@ -82,6 +82,24 @@
   line-height: 1.2;
 }
 
+.input__arrow {
+  @include button;
+  position: absolute;
+  top: 2.3rem;
+  right: 2.3rem;
+  width: 1.4rem;
+  height: 0.9rem;
+  background-image: url(../../images/icons/arrow.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @extend %transition-all;
+
+  &_active {
+    transform: rotate(180deg);
+  }
+}
+
 .material {
   @include list;
   width: 100%;
@@ -94,7 +112,7 @@
   border-top: none;
   border-radius: 0 0 0.8rem 0.8rem;
   background: $white;
-  box-shadow: 0 10px 10px 4px rgba(122, 112, 112, 0.1); /* получившаяся тень */
+  box-shadow: 0 10px 10px 4px rgba(122, 112, 112, 0.1);
   visibility: hidden;
   opacity: 0;
   @extend %transition-all;
@@ -104,6 +122,9 @@
     z-index: 5;
     visibility: visible;
     opacity: 1;
+    height: 16.2rem;
+    overflow-y: auto;
+    @include scrollbars;
   }
 }
 

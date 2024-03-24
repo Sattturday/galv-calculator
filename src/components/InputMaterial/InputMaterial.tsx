@@ -35,7 +35,7 @@ export const InputMaterial = ({
 }: InputProps) => {
   const [showMatList, setShowMatList] = useState(false);
   const dispatch = useAppDispatch();
-  const { matList } = useAppSelector(state => state.time);
+  const { matList } = useAppSelector((state) => state.time);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length !== 0) {
@@ -45,6 +45,14 @@ export const InputMaterial = ({
     }
     handleChange(e);
     console.log('e:', e.target.value);
+  };
+
+  const handleClickButton = () => {
+    if (showMatList) {
+      setShowMatList(false);
+    } else {
+      dispatch(fetchMaterial(''));
+    }
   };
 
   const handlerMaterialClick = (mat: IMaterial) => {
@@ -60,13 +68,13 @@ export const InputMaterial = ({
       setNumberValue({
         key: 'q',
         value: qValue,
-      }),
+      })
     );
     dispatch(
       setNumberValue({
         key: 'p',
         value: pValue,
-      }),
+      })
     );
     dispatch(clearMatList());
     setShowMatList(false);
@@ -79,12 +87,12 @@ export const InputMaterial = ({
   }, [matList]);
 
   return (
-    <label className="input">
-      <span className="input__name">
+    <label className='input'>
+      <span className='input__name'>
         {title}
         {isRequired && <span>*</span>}
       </span>
-      <div className="input__wrap">
+      <div className='input__wrap'>
         <input
           className={`input__field${
             (errors[name] && ' input__field_type_error') || ''
@@ -92,17 +100,21 @@ export const InputMaterial = ({
           name={name}
           value={values[name] || ''}
           onChange={onChange}
-          required
           {...props}
         />
+        <button
+          className={`input__arrow${showMatList ? ' input__arrow_active' : ''}`}
+          type='button'
+          onClick={handleClickButton}
+        ></button>
         {showMatList && (
           <ul className={`material ${showMatList ? 'material_active' : ''}`}>
             {matList.map((material, index) => {
               return (
-                <li className="material__item" key={index}>
+                <li className='material__item' key={index}>
                   <button
-                    className="material__button"
-                    type="button"
+                    className='material__button'
+                    type='button'
                     onClick={() => handlerMaterialClick(material)}
                   >
                     {material.name}
@@ -112,7 +124,7 @@ export const InputMaterial = ({
             })}
           </ul>
         )}
-        <span className="input__error">{errors[name]}</span>
+        <span className='input__error'>{errors[name]}</span>
       </div>
     </label>
   );

@@ -16,10 +16,11 @@ interface FormAndValidation {
   resetForm: (
     newIsValid?: boolean,
     newValues?: FormState,
-    newErrors?: FormErrors,
+    newErrors?: FormErrors
   ) => void;
   setValues: (values: FormState) => void;
   setIsValid: (isValid: boolean) => void;
+  deleteValue: (name: string) => void;
 }
 
 export function useFormAndValidation(): FormAndValidation {
@@ -33,7 +34,7 @@ export function useFormAndValidation(): FormAndValidation {
 
     if (isValidPattern && name === 'name') {
       e.target.setCustomValidity(
-        'Имя может содержать только латиницу, кириллицу, пробел или дефис',
+        'Имя может содержать только латиницу, кириллицу, пробел или дефис'
       );
     } else {
       e.target.setCustomValidity('');
@@ -47,17 +48,21 @@ export function useFormAndValidation(): FormAndValidation {
     }
   };
 
+  const deleteValue = (name: string) => {
+    delete values[name];
+  };
+
   const resetForm = useCallback(
     (
       newIsValid = false,
       newValues: FormState = {},
-      newErrors: FormErrors = {},
+      newErrors: FormErrors = {}
     ) => {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
-    [setValues, setErrors, setIsValid],
+    [setValues, setErrors, setIsValid]
   );
 
   return {
@@ -68,5 +73,6 @@ export function useFormAndValidation(): FormAndValidation {
     resetForm,
     setValues,
     setIsValid,
+    deleteValue,
   };
 }

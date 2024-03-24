@@ -23,27 +23,26 @@
 }
 
 .checkbox__input-new {
-  width: 5.2rem;
+  padding: 0 2rem;
+  width: 17.2rem;
   min-height: 2.8rem;
+  display: flex;
+  justify-content: space-between;
   background-image: url(../../images/icons/checkbox-off.svg);
-  background-size: cover;
+  background-size: 5.2rem;
+  background-repeat: no-repeat;
+  background-position: 6.5rem;
   transition: background-image 0.4s ease-in-out;
-
-  &:after {
-    content: '';
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
 }
 
 .checkbox__input:checked + .checkbox__input-new {
   background-image: url(../../images/icons/checkbox-on.svg);
-
-  &:after {
-    opacity: 1;
-  }
 }
 
 .checkbox__title {
+  @include text;
+}
+
+.checkbox__subtitle {
   @include text;
 }

@@ -13,7 +13,7 @@ export const fetchMaterial = createAsyncThunk<
   { rejectValue: string }
 >('time/fetchMaterial', async function (value, { rejectWithValue }) {
   const response = await fetch(
-    `http://89.104.70.160/api/el_eqts/?search=${value}`,
+    `http://89.104.70.160/api/el_eqts/?search=${value}`
   );
 
   if (!response.ok) {
@@ -73,7 +73,10 @@ const timeSlice = createSlice({
   name: 'time',
   initialState,
   reducers: {
-    addTimeUnits(state, action: PayloadAction<{ key: string; value: { [key: string]: string } }>) {
+    addTimeUnits(
+      state,
+      action: PayloadAction<{ key: string; value: { [key: string]: string } }>
+    ) {
       const { key, value } = action.payload;
       if (
         key === 'units_m' ||
@@ -93,7 +96,7 @@ const timeSlice = createSlice({
     },
     setNumberValue(
       state,
-      action: PayloadAction<{ key: string; value: number }>,
+      action: PayloadAction<{ key: string; value: number | null }>
     ) {
       const { key, value } = action.payload;
       if (
@@ -113,9 +116,9 @@ const timeSlice = createSlice({
       state.matList = [];
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchMaterial.pending, state => {
+      .addCase(fetchMaterial.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -123,7 +126,7 @@ const timeSlice = createSlice({
         state.matList = action.payload;
         state.loading = false;
       })
-      .addCase(fetchTime.pending, state => {
+      .addCase(fetchTime.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
