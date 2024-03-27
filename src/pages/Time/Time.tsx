@@ -34,9 +34,8 @@ export const Time: React.FC = () => {
   const resultMin = time.resultTime !== null ? time.resultTime.t_min : '';
   const resultSec = time.resultTime !== null ? time.resultTime.t : '';
 
-  const resultString = `${resultHour ? resultHour : 0}ч ${
-    resultMin ? resultMin : 0
-  }мин ${resultSec ? resultSec : 0}сек`;
+  const resultString = `${resultHour ? resultHour : 0}ч ${resultMin ? resultMin : 0
+    }мин ${resultSec ? resultSec : 0}сек`;
 
   const checkboxHandler = (key: string) => {
     dispatch(setCheckbox(key));
@@ -189,7 +188,7 @@ export const Time: React.FC = () => {
                 <Units unitKey='units_h' />
               </fieldset>
             )}
-            {knownValues === 'none' && (
+            {(knownValues === 'only_I' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность покрытия</p>
                 <InputNumber
@@ -201,9 +200,7 @@ export const Time: React.FC = () => {
                 <Units unitKey='units_p' />
               </fieldset>
             )}
-            {(knownValues === 'only_I' ||
-              knownValues === 'only_m' ||
-              knownValues === 'all') && (
+            {(knownValues === 'only_m' || knownValues === 'all') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Масса покрытия</p>
                 <InputNumber
