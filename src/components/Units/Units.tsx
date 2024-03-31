@@ -10,12 +10,12 @@ import { ITime } from '../../types/data';
 import './Units.scss';
 
 interface UnitsProps {
-  unitKey: keyof ITime;
+  unitKey: keyof ITime['units'];
 }
 
 export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
   const units: { [key: string]: string }[] = unitsButtons[unitKey];
-  const stateUnit = useAppSelector((state) => state.time[unitKey]);
+  const stateUnit = useAppSelector((state) => state.time.units[unitKey]);
 
   let initialButtonName: string;
   if (

@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 
-import './InputNumber.scss';
-import { useAppDispatch } from '../../hook';
 import { setNumberValue } from '../../store/timeSlice';
+import { useAppDispatch } from '../../hook';
+import './InputNumber.scss';
 
 interface InputProps {
   name: string;
@@ -11,6 +11,7 @@ interface InputProps {
   values: Record<string, string>;
   placeholder?: string;
   step?: string;
+  min?: string;
   max?: string;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -22,6 +23,7 @@ export const InputNumber = ({
   handleChange,
   placeholder = '0,0000',
   step = '0.0001',
+  min = '0.0001',
   max,
   ...props
 }: InputProps) => {
@@ -29,7 +31,7 @@ export const InputNumber = ({
 
   const onChange = (key: string, value: number) => {
     if (key === 'wt') {
-      const value_wt = value / 100;
+      const value_wt = +(value / 100).toFixed(4);
       dispatch(setNumberValue({ key: key, value: value_wt }));
     } else {
       dispatch(setNumberValue({ key: key, value: value }));
@@ -39,12 +41,11 @@ export const InputNumber = ({
   return (
     <label className="input-number">
       <input
-        className={`input-number__field${
-          (errors[name] && ' input-number__field_type_error') || ''
-        }`}
+        className={`input-number__field${(errors[name] && ' input-number__field_type_error') || ''
+          }`}
         name={name}
         placeholder={placeholder}
-        min="0"
+        min={min}
         max={max ? max : 'auto'}
         step={step}
         type="number"

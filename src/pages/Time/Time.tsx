@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
+import { fetchTime, setCheckbox, setNumberValue } from '../../store/timeSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { buildParamsObject } from '../../utils/buildParams';
 import { InputCheckbox } from '../../components/InputCheckbox';
 import { InputMaterial } from '../../components/InputMaterial';
+import { buildResult } from '../../utils/buildResult';
 import { InputNumber } from '../../components/InputNumber';
-import { fetchTime, setCheckbox, setNumberValue } from '../../store/timeSlice';
 import { Units } from '../../components/Units';
-import { Form } from '../../components/Form';
 import { ITime } from '../../types/data';
+import { Form } from '../../components/Form';
 
 import './Time.scss';
 
 export const Time: React.FC = () => {
   const [knownValues, setKnownValues] = useState('none');
-  const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState('');
 
   const {
     values,
@@ -30,19 +31,12 @@ export const Time: React.FC = () => {
 
   const time = useAppSelector((state) => state.time);
 
-  const resultHour = time.resultTime !== null ? time.resultTime.t_hour : '';
-  const resultMin = time.resultTime !== null ? time.resultTime.t_min : '';
-  const resultSec = time.resultTime !== null ? time.resultTime.t : '';
-
-  const resultString = `${resultHour ? resultHour : 0}ч ${resultMin ? resultMin : 0
-    }мин ${resultSec ? resultSec : 0}сек`;
-
   const checkboxHandler = (key: string) => {
     dispatch(setCheckbox(key));
   };
 
   const newCalculationHandle = () => {
-    setShowResult(false);
+    setResult('');
     resetForm();
   };
 
@@ -50,15 +44,14 @@ export const Time: React.FC = () => {
     e.preventDefault();
     const params = buildParamsObject(time);
     dispatch(fetchTime(params));
-    setShowResult(true);
   };
 
   const resetNumberValue = (possibleKeys: string[], time: ITime) => {
-    const timeKeys = Object.keys(time);
+    const timeKeys = Object.keys(time.values);
     for (const possibleKey of possibleKeys) {
       let key: keyof ITime | undefined;
       if (timeKeys.includes(possibleKey)) key = possibleKey as keyof ITime;
-      if (key !== undefined && time[key] !== null) {
+      if (key !== undefined && time.values[key] !== null) {
         dispatch(setNumberValue({ key: key, value: null }));
         deleteValue(key);
       }
@@ -86,8 +79,10 @@ export const Time: React.FC = () => {
   }, [checkboxHandler]);
 
   useEffect(() => {
-    showInput();
-  }, [checkboxHandler]);
+    if (time.resultTime) {
+      setResult(buildResult(time.resultTime));
+    }
+  }, [time.resultTime]);
 
   useEffect(() => {
     resetForm();
@@ -97,10 +92,20 @@ export const Time: React.FC = () => {
     <section className='time'>
       <div className='wrapper'>
         <div className='time__container'>
-          {showResult && (
+          {time.error && (
+            <div className='time__result'>
+              <p>{time.error}</p>
+            </div>
+          )}
+          {time.loading && (
+            <div className='time__result'>
+              <p>Считаем...</p>
+            </div>
+          )}
+          {result && !time.error && (
             <div className='time__result'>
               <p>
-                Время покрытия: <span>{resultString}</span>
+                Время покрытия: <span>{result}</span>
               </p>
             </div>
           )}
@@ -229,8 +234,9 @@ export const Time: React.FC = () => {
                 errors={errors}
                 values={values}
                 handleChange={handleChange}
-                placeholder='0,00'
+                placeholder='0.00'
                 step='0.01'
+                min='0.01'
                 max='100'
               />
               <p className='fieldset__percent'>%</p>

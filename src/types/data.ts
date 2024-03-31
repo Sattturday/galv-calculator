@@ -1,35 +1,34 @@
-export interface ITime {
-  resultTime: ITimeResult | null;
-  matList: IMaterial[];
-  know_I: boolean;
-  know_m: boolean;
-  m: number | null;
-  units_m: { [key: string]: string };
-  I: number | null;
-  units_I: { [key: string]: string };
-  q: number | null;
-  units_q: { [key: string]: string };
-  wt: number | null;
-  S: number | null;
-  units_S: { [key: string]: string };
-  j: number | null;
-  units_j: { [key: string]: string };
-  p: number | null;
-  units_p: { [key: string]: string };
-  h: number | null;
-  units_h: { [key: string]: string };
-  loading: boolean;
-  error: string | null;
-}
+import { z } from 'zod';
 
-export interface IMaterial {
-  name: string;
-  q: string;
-  p: string;
-}
+// Схема для единиц измерения
+export const unitsSchema = z.record(z.string());
+export type IUnits = z.infer<typeof unitsSchema>;
 
-export interface ITimeResult {
-  t: number;
-  t_min: number;
-  t_hour: number;
-}
+// Схема для материала
+const IMaterialSchema = z.object({
+  name: z.string(),
+  q: z.string(),
+  p: z.string(),
+});
+export type IMaterial = z.infer<typeof IMaterialSchema>;
+
+// Схема для результата времени
+const ITimeResultSchema = z.object({
+  t: z.number(),
+  t_min: z.number(),
+  t_hour: z.number(),
+});
+export type ITimeResult = z.infer<typeof ITimeResultSchema>;
+
+// Схема для времени
+export const ITimeSchema = z.object({
+  resultTime: z.nullable(ITimeResultSchema),
+  matList: z.array(IMaterialSchema),
+  know_I: z.boolean(),
+  know_m: z.boolean(),
+  values: z.record(z.union([z.number(), z.null()])),
+  units: z.record(unitsSchema),
+  loading: z.boolean(),
+  error: z.nullable(z.string()),
+});
+export type ITime = z.infer<typeof ITimeSchema>;
