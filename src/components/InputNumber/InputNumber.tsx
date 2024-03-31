@@ -1,10 +1,14 @@
 import { ChangeEvent } from 'react';
 
-import { setNumberValue } from '../../store/timeSlice';
 import { useAppDispatch } from '../../hook';
 import './InputNumber.scss';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 interface InputProps {
+  setValue: ActionCreatorWithPayload<{
+    key: string;
+    value: number | null;
+  }, "time/setNumberValue" | "thickness/setNumberValue">
   name: string;
   isRequired?: boolean;
   errors: Record<string, string>;
@@ -17,6 +21,7 @@ interface InputProps {
 }
 
 export const InputNumber = ({
+  setValue,
   name,
   errors,
   values,
@@ -32,9 +37,9 @@ export const InputNumber = ({
   const onChange = (key: string, value: number) => {
     if (key === 'wt') {
       const value_wt = +(value / 100).toFixed(4);
-      dispatch(setNumberValue({ key: key, value: value_wt }));
+      dispatch(setValue({ key: key, value: value_wt }));
     } else {
-      dispatch(setNumberValue({ key: key, value: value }));
+      dispatch(setValue({ key: key, value: value }));
     }
   };
 

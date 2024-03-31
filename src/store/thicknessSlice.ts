@@ -5,32 +5,16 @@ import {
   Action,
 } from '@reduxjs/toolkit';
 
-import { Material, Time, TimeResult } from '../types/data';
+import { Thickness, ThicknessResult } from '../types/data';
 import { hasOwnPropertyFromUnknown } from '../utils/hasOwnPropertyFromUnknown';
 import { BASE_URL } from '../utils/data';
 
-export const fetchMaterial = createAsyncThunk<
-  Material[],
-  string,
-  { rejectValue: string }
->('time/fetchMaterial', async function (value, { rejectWithValue }) {
-  const response = await fetch(`${BASE_URL}el_eqts/?search=${value}`);
-
-  if (!response.ok) {
-    return rejectWithValue('Server Error!');
-  }
-
-  const data = await response.json();
-
-  return data;
-});
-
-export const fetchTime = createAsyncThunk<
-  TimeResult,
+export const fetchThickness = createAsyncThunk<
+  ThicknessResult,
   { [key: string]: string | number | null },
   { rejectValue: string }
->('time/fetchTime', async function (params, { rejectWithValue }) {
-  const response = await fetch(`${BASE_URL}time/`, {
+>('thickness/fetchThickness', async function (params, { rejectWithValue }) {
+  const response = await fetch(`${BASE_URL}height/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,19 +23,19 @@ export const fetchTime = createAsyncThunk<
   });
 
   if (response.status === 400) {
-    return rejectWithValue('Ответ меньше секунды!');
+    return rejectWithValue('Какая-то ошибка!');
   }
 
   if (!response.ok) {
     return rejectWithValue('Что-то пошло не так!');
   }
 
-  return (await response.json()) as TimeResult;
+  return (await response.json()) as ThicknessResult;
 });
 
-const initialState: Time = {
-  know_m: false,
-  know_I: false,
+const initialState: Thickness = {
+  know_m: true,
+  know_j: false,
   values: {
     m: null,
     I: null,
@@ -60,7 +44,7 @@ const initialState: Time = {
     S: null,
     j: null,
     p: null,
-    h: null,
+    t: null,
   },
   units: {
     units_m: { title: 'кг', id: 'kg', param: 'кг' },
@@ -69,19 +53,18 @@ const initialState: Time = {
     units_S: { title: 'м²', id: 'm2', param: 'м2' },
     units_j: { title: 'А/дм²', id: 'A/dm2', param: 'А/дм2' },
     units_p: { title: 'кг/м³', id: 'kg/m3', param: 'кг/м3' },
-    units_h: { title: 'мкм', id: 'mkm', param: 'мкм' },
+    units_t: { title: 'ч', id: 'h', param: 'ч' },
   },
-  resultTime: null,
-  matList: [],
+  resultThickness: null,
   loading: false,
   error: null,
 };
 
-const timeSlice = createSlice({
-  name: 'time',
+const thicknessSlice = createSlice({
+  name: 'thickness',
   initialState,
   reducers: {
-    addTimeUnits(
+    addThicknessUnits(
       state,
       action: PayloadAction<{ key: string; value: { [key: string]: string } }>,
     ) {
@@ -95,7 +78,7 @@ const timeSlice = createSlice({
     },
     setCheckbox(state, action: PayloadAction<string>) {
       const key = action.payload;
-      if (key === 'know_m' || key === 'know_I') state[key] = !state[key];
+      if (key === 'know_m' || key === 'know_j') state[key] = !state[key];
     },
     setNumberValue(
       state,
@@ -106,31 +89,20 @@ const timeSlice = createSlice({
         hasOwnPropertyFromUnknown(state.values, key) &&
         !key.startsWith('units_') &&
         key !== 'know_m' &&
-        key !== 'know_I'
+        key !== 'know_j'
       ) {
         state.values[key] = value;
       }
     },
-    clearMatList(state) {
-      state.matList = [];
-    },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchMaterial.pending, state => {
+      .addCase(fetchThickness.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchMaterial.fulfilled, (state, action) => {
-        state.matList = action.payload;
-        state.loading = false;
-      })
-      .addCase(fetchTime.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchTime.fulfilled, (state, action) => {
-        state.resultTime = action.payload;
+      .addCase(fetchThickness.fulfilled, (state, action) => {
+        state.resultThickness = action.payload;
         state.loading = false;
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
@@ -140,10 +112,10 @@ const timeSlice = createSlice({
   },
 });
 
-export const { addTimeUnits, setCheckbox, setNumberValue, clearMatList } =
-  timeSlice.actions;
+export const { setCheckbox, setNumberValue, addThicknessUnits } =
+  thicknessSlice.actions;
 
-export default timeSlice.reducer;
+export default thicknessSlice.reducer;
 
 function isError(action: Action) {
   return action.type.endsWith('rejected');

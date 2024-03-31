@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchTime, setCheckbox, setNumberValue } from '../../store/timeSlice';
+import { fetchTime, setCheckbox, setNumberValue, addTimeUnits } from '../../store/timeSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
-import { buildParamsObject } from '../../utils/buildParams';
+import { buildParamsTimeObject } from '../../utils/buildParams';
 import { InputCheckbox } from '../../components/InputCheckbox';
 import { InputMaterial } from '../../components/InputMaterial';
 import { buildResult } from '../../utils/buildResult';
 import { InputNumber } from '../../components/InputNumber';
 import { Units } from '../../components/Units';
-import { ITime } from '../../types/data';
+import { Time } from '../../types/data';
 import { Form } from '../../components/Form';
 
 import './Time.scss';
 
-export const Time: React.FC = () => {
+export const TimeCoverage: React.FC = () => {
   const [knownValues, setKnownValues] = useState('none');
   const [result, setResult] = useState('');
 
@@ -42,15 +42,15 @@ export const Time: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const params = buildParamsObject(time);
+    const params = buildParamsTimeObject(time);
     dispatch(fetchTime(params));
   };
 
-  const resetNumberValue = (possibleKeys: string[], time: ITime) => {
+  const resetNumberValue = (possibleKeys: string[], time: Time) => {
     const timeKeys = Object.keys(time.values);
     for (const possibleKey of possibleKeys) {
-      let key: keyof ITime | undefined;
-      if (timeKeys.includes(possibleKey)) key = possibleKey as keyof ITime;
+      let key: keyof Time | undefined;
+      if (timeKeys.includes(possibleKey)) key = possibleKey as keyof Time;
       if (key !== undefined && time.values[key] !== null) {
         dispatch(setNumberValue({ key: key, value: null }));
         deleteValue(key);
@@ -149,87 +149,95 @@ export const Time: React.FC = () => {
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность тока</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='j'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_j' />
+                <Units unitKey='units_j' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'all') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Сила тока</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='I'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_I' />
+                <Units unitKey='units_I' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'only_m') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Площадь покрытия</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='S'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_S' />
+                <Units unitKey='units_S' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Толщина покрытия</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='h'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_h' />
+                <Units unitKey='units_h' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность покрытия</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='p'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_p' />
+                <Units unitKey='units_p' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             {(knownValues === 'only_m' || knownValues === 'all') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Масса покрытия</p>
                 <InputNumber
+                  setValue={setNumberValue}
                   name='m'
                   errors={errors}
                   values={values}
                   handleChange={handleChange}
                 />
-                <Units unitKey='units_m' />
+                <Units unitKey='units_m' addUnits={addTimeUnits} name='time' />
               </fieldset>
             )}
             <fieldset className='fieldset'>
               <p className='fieldset__title'>Электрохимический эквивалент</p>
               <InputNumber
+                setValue={setNumberValue}
                 name='q'
                 errors={errors}
                 values={values}
                 handleChange={handleChange}
               />
-              <Units unitKey='units_q' />
+              <Units unitKey='units_q' addUnits={addTimeUnits} name='time' />
             </fieldset>
             <fieldset className='fieldset'>
               <p className='fieldset__title'>Выход по току</p>
               <InputNumber
+                setValue={setNumberValue}
                 name='wt'
                 errors={errors}
                 values={values}

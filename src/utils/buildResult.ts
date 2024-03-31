@@ -1,6 +1,6 @@
-import { ITimeResult } from '../types/data';
+import { TimeResult } from '../types/data';
 
-export const buildResult = (result: ITimeResult): string => {
+export const buildResult = (result: TimeResult): string => {
   const resultHour = result.t_hour;
   const resultMin = result.t_min;
   const resultSec = result.t;

@@ -3,19 +3,27 @@ import { useRef, useState } from 'react';
 import { hasOwnPropertyFromUnknown } from '../../utils/hasOwnPropertyFromUnknown';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useClickOutside } from '../../hooks/useClickOutside';
-import { addTimeUnits } from '../../store/timeSlice';
 import { unitsButtons } from '../../utils/data';
-import { ITime } from '../../types/data';
+import { Thickness, Time } from '../../types/data';
 
 import './Units.scss';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 interface UnitsProps {
-  unitKey: keyof ITime['units'];
+  unitKey: keyof Time['units'] | keyof Thickness['units'];
+  addUnits: ActionCreatorWithPayload<{
+    key: string;
+    value: {
+      [key: string]: string;
+    };
+  }, "time/addTimeUnits" | "thickness/addThicknessUnits">;
+  name: 'time' | "thickness";
 }
 
-export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
+export const Units: React.FC<UnitsProps> = ({ unitKey, addUnits, name }) => {
+
   const units: { [key: string]: string }[] = unitsButtons[unitKey];
-  const stateUnit = useAppSelector((state) => state.time.units[unitKey]);
+  const stateUnit = useAppSelector((state) => state[name].units[unitKey]);
 
   let initialButtonName: string;
   if (
@@ -48,7 +56,7 @@ export const Units: React.FC<UnitsProps> = ({ unitKey }) => {
     const selectedButton = units.find((button) => button.id === e.target.id);
     if (selectedButton) {
       setButtonName(selectedButton.title);
-      dispatch(addTimeUnits({ key: unitKey, value: selectedButton }));
+      dispatch(addUnits({ key: unitKey, value: selectedButton }));
     }
 
     onClickNavTab();

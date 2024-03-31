@@ -6,7 +6,7 @@ import {
   setNumberValue,
 } from '../../store/timeSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { IMaterial } from '../../types/data';
+import { Material } from '../../types/data';
 
 import './InputMaterial.scss';
 
@@ -55,7 +55,7 @@ export const InputMaterial = ({
     }
   };
 
-  const handlerMaterialClick = (mat: IMaterial) => {
+  const handlerMaterialClick = (mat: Material) => {
     setValues({
       ...values,
       [name]: mat.name,
@@ -94,9 +94,8 @@ export const InputMaterial = ({
       </span>
       <div className='input__wrap'>
         <input
-          className={`input__field${
-            (errors[name] && ' input__field_type_error') || ''
-          }`}
+          className={`input__field${(errors[name] && ' input__field_type_error') || ''
+            }`}
           name={name}
           value={values[name] || ''}
           onChange={onChange}

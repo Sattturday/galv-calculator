@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link className="home__card" to="/">
+            <Link className="home__card" to="/thickness-coverage">
               <p className="home__title">Расчет толщины покрытия</p>
             </Link>
           </li>

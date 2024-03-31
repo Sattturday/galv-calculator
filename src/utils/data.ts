@@ -1,3 +1,5 @@
+export const BASE_URL = 'http://89.104.70.160/api/';
+
 export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
   units_m: [
     { title: 'кг', id: 'kg', param: 'кг' },
@@ -30,5 +32,10 @@ export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
   units_h: [
     { title: 'мкм', id: 'mkm', param: 'мкм' },
     { title: 'мм', id: 'mm', param: 'мм' },
+  ],
+  units_t: [
+    { title: 'ч', id: 'h', param: 'ч' },
+    { title: 'мин', id: 'm', param: 'мин' },
+    { title: 'сек', id: 's', param: 'сек' },
   ],
 };
