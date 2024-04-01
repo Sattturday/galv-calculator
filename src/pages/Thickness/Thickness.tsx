@@ -57,13 +57,13 @@ export const ThicknessCoverage: React.FC = () => {
 
   const showInput = () => {
     if (thickness.know_m) {
-      // resetNumberValue(['m', 'I', 'S'], thickness);
+      resetNumberValue(['j', 'I', 't', 'q', 'wt'], thickness);
       setKnownValues('know_m');
     } else if (!thickness.know_m && thickness.know_j) {
-      // resetNumberValue(['I', 'h', 'p'], thickness);
+      resetNumberValue(['I', 'S', 'm'], thickness);
       setKnownValues('know_j');
     } else if (!thickness.know_m && !thickness.know_j) {
-      // resetNumberValue(['j', 'p'], thickness);
+      resetNumberValue(['j', 'm'], thickness);
       setKnownValues('none');
     }
   };
