@@ -5,25 +5,9 @@ import {
   Action,
 } from '@reduxjs/toolkit';
 
-import { Material, Time, TimeResult } from '../types/data';
+import { Time, TimeResult } from '../types/data';
 import { hasOwnPropertyFromUnknown } from '../utils/hasOwnPropertyFromUnknown';
 import { BASE_URL } from '../utils/data';
-
-export const fetchMaterial = createAsyncThunk<
-  Material[],
-  string,
-  { rejectValue: string }
->('time/fetchMaterial', async function (value, { rejectWithValue }) {
-  const response = await fetch(`${BASE_URL}el_eqts/?search=${value}`);
-
-  if (!response.ok) {
-    return rejectWithValue('Server Error!');
-  }
-
-  const data = await response.json();
-
-  return data;
-});
 
 export const fetchTime = createAsyncThunk<
   TimeResult,
@@ -72,7 +56,6 @@ const initialState: Time = {
     units_h: { title: 'мкм', id: 'mkm', param: 'мкм' },
   },
   resultTime: null,
-  matList: [],
   loading: false,
   error: null,
 };
@@ -111,20 +94,9 @@ const timeSlice = createSlice({
         state.values[key] = value;
       }
     },
-    clearMatList(state) {
-      state.matList = [];
-    },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchMaterial.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchMaterial.fulfilled, (state, action) => {
-        state.matList = action.payload;
-        state.loading = false;
-      })
       .addCase(fetchTime.pending, state => {
         state.loading = true;
         state.error = null;
@@ -140,8 +112,7 @@ const timeSlice = createSlice({
   },
 });
 
-export const { addTimeUnits, setCheckbox, setNumberValue, clearMatList } =
-  timeSlice.actions;
+export const { addTimeUnits, setCheckbox, setNumberValue } = timeSlice.actions;
 
 export default timeSlice.reducer;
 

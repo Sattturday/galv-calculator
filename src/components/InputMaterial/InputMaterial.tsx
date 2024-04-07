@@ -1,10 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import {
-  clearMatList,
-  fetchMaterial,
-  setNumberValue,
-} from '../../store/timeSlice';
+import { clearMatList, fetchMaterial } from '../../store/materialSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { Material } from '../../types/data';
 
@@ -19,6 +15,7 @@ interface InputProps {
   isRequired?: boolean;
   errors: Record<string, string>;
   values: Record<string, string>;
+  setNumberValue: (key: string, value: number) => void;
   setValues: (values: { [key: string]: string }) => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -31,11 +28,12 @@ export const InputMaterial = ({
   values,
   setValues,
   handleChange,
+  setNumberValue,
   ...props
 }: InputProps) => {
   const [showMatList, setShowMatList] = useState(false);
   const dispatch = useAppDispatch();
-  const { matList } = useAppSelector((state) => state.time);
+  const { matList } = useAppSelector((state) => state.material);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length !== 0) {
@@ -64,18 +62,8 @@ export const InputMaterial = ({
     });
     const qValue = +mat.q;
     const pValue = +mat.p;
-    dispatch(
-      setNumberValue({
-        key: 'q',
-        value: qValue,
-      })
-    );
-    dispatch(
-      setNumberValue({
-        key: 'p',
-        value: pValue,
-      })
-    );
+    setNumberValue('q', qValue)
+    setNumberValue('p', pValue)
     dispatch(clearMatList());
     setShowMatList(false);
   };

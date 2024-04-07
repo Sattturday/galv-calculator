@@ -122,7 +122,7 @@
     z-index: 5;
     visibility: visible;
     opacity: 1;
-    height: 16.2rem;
+    max-height: 16.2rem;
     overflow-y: auto;
     @include scrollbars;
   }

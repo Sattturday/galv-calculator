@@ -46,6 +46,10 @@ export const TimeCoverage: React.FC = () => {
     dispatch(fetchTime(params));
   };
 
+  const setMaterialValue = (key: string, value: number) => {
+    dispatch(setNumberValue({ key, value }));
+  }
+
   const resetNumberValue = (possibleKeys: string[], time: Time) => {
     const timeKeys = Object.keys(time.values);
     for (const possibleKey of possibleKeys) {
@@ -120,7 +124,7 @@ export const TimeCoverage: React.FC = () => {
           >
             <div className='time__wrap'>
               <InputMaterial
-                name='material'
+                name='timeMaterial'
                 title='Материал покрытия'
                 placeholder='Начните вводить текст'
                 type='text'
@@ -129,6 +133,7 @@ export const TimeCoverage: React.FC = () => {
                 values={values}
                 setValues={setValues}
                 handleChange={handleChange}
+                setNumberValue={setMaterialValue}
               />
               <InputCheckbox
                 option={{ name: 'Масса покрытия известна' }}

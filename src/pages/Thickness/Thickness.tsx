@@ -11,6 +11,7 @@ import { Thickness, ThicknessResult } from '../../types/data';
 import { Form } from '../../components/Form';
 
 import './Thickness.scss';
+import { InputMaterial } from '../../components/InputMaterial';
 
 export const ThicknessCoverage: React.FC = () => {
   const [knownValues, setKnownValues] = useState('none');
@@ -18,6 +19,7 @@ export const ThicknessCoverage: React.FC = () => {
 
   const {
     values,
+    setValues,
     deleteValue,
     handleChange,
     errors,
@@ -42,6 +44,10 @@ export const ThicknessCoverage: React.FC = () => {
     const params = buildParamsThicknessObject(thickness);
     dispatch(fetchThickness(params));
   };
+
+  const setMaterialValue = (key: string, value: number) => {
+    dispatch(setNumberValue({ key, value }));
+  }
 
   const resetNumberValue = (possibleKeys: string[], thickness: Thickness) => {
     const thicknessKeys = Object.keys(thickness.values);
@@ -70,7 +76,6 @@ export const ThicknessCoverage: React.FC = () => {
 
   useEffect(() => {
     showInput();
-    console.log('knownValues: ', knownValues);
   }, [checkboxHandler]);
 
   useEffect(() => {
@@ -125,6 +130,18 @@ export const ThicknessCoverage: React.FC = () => {
             handleReset={newCalculationHandle}
           >
             <div className='thickness__wrap'>
+              <InputMaterial
+                name='thicknessMaterial'
+                title='Материал покрытия'
+                placeholder='Начните вводить текст'
+                type='text'
+                minLength={1}
+                errors={errors}
+                values={values}
+                setValues={setValues}
+                handleChange={handleChange}
+                setNumberValue={setMaterialValue}
+              />
               <InputCheckbox
                 option={{ name: 'Масса покрытия известна' }}
                 isChecked={thickness.know_m}

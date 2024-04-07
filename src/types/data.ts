@@ -12,6 +12,14 @@ const MaterialSchema = z.object({
 });
 export type Material = z.infer<typeof MaterialSchema>;
 
+// Схема для стейта материалов
+const MaterialStateSchema = z.object({
+  matList: z.array(MaterialSchema),
+  loading: z.boolean(),
+  error: z.nullable(z.string()),
+});
+export type MaterialState = z.infer<typeof MaterialStateSchema>;
+
 // Схема для результата времени
 const TimeResultSchema = z.object({
   t: z.number(),
@@ -23,7 +31,6 @@ export type TimeResult = z.infer<typeof TimeResultSchema>;
 // Схема для времени
 export const TimeSchema = z.object({
   resultTime: z.nullable(TimeResultSchema),
-  matList: z.array(MaterialSchema),
   know_I: z.boolean(),
   know_m: z.boolean(),
   values: z.record(z.union([z.number(), z.null()])),
