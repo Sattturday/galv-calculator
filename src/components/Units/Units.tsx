@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 import { hasOwnPropertyFromUnknown } from '../../utils/hasOwnPropertyFromUnknown';
 import { useAppDispatch, useAppSelector } from '../../hook';
@@ -7,7 +8,6 @@ import { unitsButtons } from '../../utils/data';
 import { Thickness, Time } from '../../types/data';
 
 import './Units.scss';
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 interface UnitsProps {
   unitKey: keyof Time['units'] | keyof Thickness['units'];

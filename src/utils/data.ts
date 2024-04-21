@@ -13,7 +13,6 @@ export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
   units_q: [
     { title: 'мг/Кл', id: 'mg/Kl', param: 'мг/Кл' },
     { title: 'г/(А∙ч)', id: 'g/(A*h)', param: 'г/(А∙ч)' },
-    { title: 'кг/Кл', id: 'kg/Kl', param: 'кг/Кл' },
   ],
   units_S: [
     { title: 'м²', id: 'm2', param: 'м2' },

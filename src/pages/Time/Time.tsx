@@ -70,7 +70,7 @@ export const TimeCoverage: React.FC = () => {
       resetNumberValue(['I', 'h', 'p'], time);
       setKnownValues('only_m');
     } else if (time.know_I && !time.know_m) {
-      resetNumberValue(['j', 'p'], time);
+      resetNumberValue(['j', 'm'], time);
       setKnownValues('only_I');
     } else {
       resetNumberValue(['j', 'S', 'h', 'p'], time);
