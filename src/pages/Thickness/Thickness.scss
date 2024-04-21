@@ -24,25 +24,19 @@
   padding-bottom: 3rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   border-bottom: 1px solid $border-active;
 
   p {
     @include text;
   }
+}
 
-  span {
-    @include text($font-weight: $fw-semibold);
-  }
-
-  ul {
-    @include list;
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
+.thickness__result-value {
+  @include text($font-weight: $fw-semibold);
+  min-width: 10rem;
+  text-align: center;
 }
 
 .thickness__button {

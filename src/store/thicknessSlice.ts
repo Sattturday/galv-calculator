@@ -54,6 +54,7 @@ const initialState: Thickness = {
     units_j: { title: 'А/дм²', id: 'A/dm2', param: 'А/дм2' },
     units_p: { title: 'кг/м³', id: 'kg/m3', param: 'кг/м3' },
     units_t: { title: 'ч', id: 'h', param: 'ч' },
+    units_result: { title: 'мкм', id: 'mkm', param: 'мкм' },
   },
   resultThickness: null,
   loading: false,

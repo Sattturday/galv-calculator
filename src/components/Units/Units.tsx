@@ -10,13 +10,13 @@ import { Thickness, Time } from '../../types/data';
 import './Units.scss';
 
 interface UnitsProps {
-  unitKey: keyof Time['units'] | keyof Thickness['units'];
+  unitKey: keyof Time['units'] | keyof Thickness['units'] | 'result_units';
   addUnits: ActionCreatorWithPayload<{
     key: string;
     value: {
       [key: string]: string;
     };
-  }, "time/addTimeUnits" | "thickness/addThicknessUnits">;
+  }, "time/addTimeUnits" | "thickness/addThicknessUnits" | "thickness/addResultUnits">;
   name: 'time' | "thickness";
 }
 

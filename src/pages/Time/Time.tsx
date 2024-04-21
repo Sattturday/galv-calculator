@@ -11,7 +11,6 @@ import { InputNumber } from '../../components/InputNumber';
 import { Units } from '../../components/Units';
 import { Time } from '../../types/data';
 import { Form } from '../../components/Form';
-
 import './Time.scss';
 
 export const TimeCoverage: React.FC = () => {

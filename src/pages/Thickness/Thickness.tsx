@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import { fetchThickness, setCheckbox, setNumberValue, addThicknessUnits } from '../../store/thicknessSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { Thickness, ThicknessResult } from '../../types/data';
 import { buildParamsThicknessObject } from '../../utils/buildParams';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { InputMaterial } from '../../components/InputMaterial';
 import { InputCheckbox } from '../../components/InputCheckbox';
 import { InputNumber } from '../../components/InputNumber';
 import { Units } from '../../components/Units';
-import { Thickness, ThicknessResult } from '../../types/data';
 import { Form } from '../../components/Form';
-
 import './Thickness.scss';
-import { InputMaterial } from '../../components/InputMaterial';
 
 export const ThicknessCoverage: React.FC = () => {
   const [knownValues, setKnownValues] = useState('none');
@@ -107,17 +106,16 @@ export const ThicknessCoverage: React.FC = () => {
               <p>
                 Толщина покрытия:
               </p>
-              <ul>
-                <li>
-                  <p>в метрах: <span>{result.h_m}</span></p>
-                </li>
-                <li>
-                  <p>в миллиметрах: <span>{result.h_milli}</span></p>
-                </li>
-                <li>
-                  <p>в микрометрах: <span>{result.h_micro}</span></p>
-                </li>
-              </ul>
+              <span className='thickness__result-value'>
+                {
+                  thickness.units.units_result.id === 'mkm'
+                    ? result.h_micro
+                    : thickness.units.units_result.id === 'mm'
+                      ? result.h_milli
+                      : result.h_m
+                }
+              </span>
+              <Units unitKey='units_result' addUnits={addThicknessUnits} name='thickness' />
             </div>
           )}
           <Form

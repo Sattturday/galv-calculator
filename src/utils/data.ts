@@ -37,4 +37,9 @@ export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
     { title: 'мин', id: 'm', param: 'мин' },
     { title: 'сек', id: 's', param: 'сек' },
   ],
+  units_result: [
+    { title: 'м', id: 'm', param: 'м' },
+    { title: 'мм', id: 'mm', param: 'мм' },
+    { title: 'мкм', id: 'mkm', param: 'мкм' },
+  ],
 };
