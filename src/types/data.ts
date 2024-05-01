@@ -59,3 +59,23 @@ export const ThicknessSchema = z.object({
   error: z.nullable(z.string()),
 });
 export type Thickness = z.infer<typeof ThicknessSchema>;
+
+// Схема для результата массы
+const WeightResultSchema = z.object({
+  h_kg: z.number(),
+  h_g: z.number(),
+  h_mg: z.number(),
+});
+export type WeightResult = z.infer<typeof WeightResultSchema>;
+
+// Схема для массы
+export const WeightSchema = z.object({
+  resultWeight: z.nullable(WeightResultSchema),
+  know_h: z.boolean(),
+  know_I: z.boolean(),
+  values: z.record(z.union([z.number(), z.null()])),
+  units: z.record(UnitsSchema),
+  loading: z.boolean(),
+  error: z.nullable(z.string()),
+});
+export type Weight = z.infer<typeof WeightSchema>;

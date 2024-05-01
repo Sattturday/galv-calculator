@@ -16,8 +16,8 @@ interface UnitsProps {
     value: {
       [key: string]: string;
     };
-  }, "time/addTimeUnits" | "thickness/addThicknessUnits" | "thickness/addResultUnits">;
-  name: 'time' | "thickness";
+  }, "time/addTimeUnits" | "thickness/addThicknessUnits" | "thickness/addResultUnits" | "weight/addWeightUnits">;
+  name: 'time' | "thickness" | "weight";
 }
 
 export const Units: React.FC<UnitsProps> = ({ unitKey, addUnits, name }) => {

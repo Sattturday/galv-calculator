@@ -17,9 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "format": "prettier --write \"src/**/*.js\" \"src/**/*.jsx\" \"src/**/*.ts\" \"src/**/*.tsx\"",
-    "prettier": "prettier"
+    "build": "react-scripts build"
   },
   "browserslist": {
     "production": [

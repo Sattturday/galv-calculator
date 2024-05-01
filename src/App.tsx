@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { TimeCoverage } from './pages/Time';
-import { Mass } from './pages/Mass';
+import { WeightCoverage } from './pages/Weight';
 import { Density } from './pages/Density';
 import { Force } from './pages/Force';
 import { ThicknessCoverage } from './pages/Thickness';
@@ -17,7 +17,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/time-coverage" element={<TimeCoverage />} />
           <Route path="/thickness-coverage" element={<ThicknessCoverage />} />
-          <Route path="/mass-coverage" element={<Mass />} />
+          <Route path="/weight-coverage" element={<WeightCoverage />} />
           <Route path="/current-density" element={<Density />} />
           <Route path="/current-force" element={<Force />} />
         </Routes>
