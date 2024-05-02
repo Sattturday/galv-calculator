@@ -34,7 +34,7 @@ export const fetchThickness = createAsyncThunk<
 });
 
 const initialState: Thickness = {
-  know_m: true,
+  know_m: false,
   know_j: false,
   values: {
     m: null,

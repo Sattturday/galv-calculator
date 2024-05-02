@@ -101,23 +101,13 @@ export const WeightCoverage: React.FC = () => {
               <p>Считаем...</p>
             </div>
           )}
-          {/* {result && !weight.error && (
-            <div className='weight__result'>
+          {result && !weight.error && (
+            <div className='time__result'>
               <p>
-                Масса покрытия:
+                Масса покрытия: <span>{result.m} кг</span>
               </p>
-              <span className='weight__result-value'>
-                {
-                  weight.units.units_result.id === 'mkm'
-                    ? result.h_micro
-                    : weight.units.units_result.id === 'mm'
-                      ? result.h_milli
-                      : result.h_m
-                }
-              </span>
-              <Units unitKey='units_result' addUnits={addWeightUnits} name='weight' />
             </div>
-          )} */}
+          )}
           <Form
             name='weight'
             buttonText='Рассчет!'

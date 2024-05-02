@@ -62,9 +62,7 @@ export type Thickness = z.infer<typeof ThicknessSchema>;
 
 // Схема для результата массы
 const WeightResultSchema = z.object({
-  h_kg: z.number(),
-  h_g: z.number(),
-  h_mg: z.number(),
+  m: z.number(),
 });
 export type WeightResult = z.infer<typeof WeightResultSchema>;
 

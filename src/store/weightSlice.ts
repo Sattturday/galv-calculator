@@ -34,7 +34,7 @@ export const fetchWeight = createAsyncThunk<
 });
 
 const initialState: Weight = {
-  know_h: true,
+  know_h: false,
   know_I: false,
   values: {
     t: null,
