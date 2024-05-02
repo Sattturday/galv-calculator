@@ -104,7 +104,7 @@ export const WeightCoverage: React.FC = () => {
           {result && !weight.error && (
             <div className='time__result'>
               <p>
-                Масса покрытия: <span>{result.m} кг</span>
+                Масса покрытия: <span>{result.m} мг</span>
               </p>
             </div>
           )}

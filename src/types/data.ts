@@ -42,9 +42,7 @@ export type Time = z.infer<typeof TimeSchema>;
 
 // Схема для результата толщины
 const ThicknessResultSchema = z.object({
-  h_m: z.number(),
-  h_milli: z.number(),
-  h_micro: z.number(),
+  h: z.number(),
 });
 export type ThicknessResult = z.infer<typeof ThicknessResultSchema>;
 

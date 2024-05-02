@@ -109,10 +109,10 @@ export const ThicknessCoverage: React.FC = () => {
               <span className='thickness__result-value'>
                 {
                   thickness.units.units_result.id === 'mkm'
-                    ? result.h_micro
+                    ? result.h
                     : thickness.units.units_result.id === 'mm'
-                      ? result.h_milli
-                      : result.h_m
+                      ? result.h / 1000
+                      : result.h / 1000000
                 }
               </span>
               <Units unitKey='units_result' addUnits={addThicknessUnits} name='thickness' />
