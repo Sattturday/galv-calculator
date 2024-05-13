@@ -1,4 +1,5 @@
-export const BASE_URL = 'http://89.104.70.160/api/';
+// export const BASE_URL = 'http://89.104.70.160/api/';
+export const BASE_URL = 'http://89.111.175.252/api/';
 
 export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
   units_m: [
