@@ -38,11 +38,14 @@ export const Form = ({
         >
           <span>{isLoading ? loadingText : buttonText}</span>
         </button>
-        <button className="form__button" onClick={handleReset} type='button'>
+        <button
+          className="form__button"
+          onClick={handleReset}
+          type='button'
+        >
           Очистить форму
         </button>
       </div>
-
       {children}
     </form>
   );

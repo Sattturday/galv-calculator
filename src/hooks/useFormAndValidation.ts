@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent } from 'react';
+import { useState, useCallback, ChangeEvent, useEffect } from 'react';
 
 interface FormState {
   [key: string]: string;
@@ -16,7 +16,7 @@ interface FormAndValidation {
   resetForm: (
     newIsValid?: boolean,
     newValues?: FormState,
-    newErrors?: FormErrors
+    newErrors?: FormErrors,
   ) => void;
   setValues: (values: FormState) => void;
   setIsValid: (isValid: boolean) => void;
@@ -28,17 +28,16 @@ export function useFormAndValidation(): FormAndValidation {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isValid, setIsValid] = useState<boolean>(true);
 
+  // Этот эффект добавлен для того, чтобы все изменения влияли на валидность формы, не только непосредственный ввод в инпуты
+  useEffect(() => {
+    const formElement = document.querySelector('form');
+    if (formElement) {
+      setIsValid(formElement.checkValidity());
+    }
+  }, [values]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const isValidPattern = e.target.validity.patternMismatch;
-
-    if (isValidPattern && name === 'name') {
-      e.target.setCustomValidity(
-        'Имя может содержать только латиницу, кириллицу, пробел или дефис'
-      );
-    } else {
-      e.target.setCustomValidity('');
-    }
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });
@@ -56,13 +55,13 @@ export function useFormAndValidation(): FormAndValidation {
     (
       newIsValid = false,
       newValues: FormState = {},
-      newErrors: FormErrors = {}
+      newErrors: FormErrors = {},
     ) => {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
-    [setValues, setErrors, setIsValid]
+    [setValues, setErrors, setIsValid],
   );
 
   return {
