@@ -75,3 +75,19 @@ export const WeightSchema = z.object({
   error: z.nullable(z.string()),
 });
 export type Weight = z.infer<typeof WeightSchema>;
+
+// Схема для результата плотности тока
+const DensityResultSchema = z.object({
+  j: z.number(),
+});
+export type DensityResult = z.infer<typeof DensityResultSchema>;
+
+// Схема для плотности тока
+export const DensitySchema = z.object({
+  resultDensity: z.nullable(DensityResultSchema),
+  values: z.record(z.union([z.number(), z.null()])),
+  units: z.record(UnitsSchema),
+  loading: z.boolean(),
+  error: z.nullable(z.string()),
+});
+export type Density = z.infer<typeof DensitySchema>;

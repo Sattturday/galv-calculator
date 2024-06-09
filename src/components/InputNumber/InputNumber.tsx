@@ -1,14 +1,14 @@
 import { ChangeEvent } from 'react';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 import { useAppDispatch } from '../../hook';
 import './InputNumber.scss';
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 interface InputProps {
   setValue: ActionCreatorWithPayload<{
     key: string;
     value: number | null;
-  }, "time/setNumberValue" | "thickness/setNumberValue" | "weight/setNumberValue">
+  }, "time/setNumberValue" | "thickness/setNumberValue" | "weight/setNumberValue" | 'density/setNumberValue'>
   name: string;
   isRequired?: boolean;
   errors: Record<string, string>;

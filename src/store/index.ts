@@ -4,6 +4,7 @@ import materialReducer from './materialSlice';
 import timeReducer from './timeSlice';
 import thicknessReducer from './thicknessSlice';
 import weightReducer from './weightSlice';
+import densityReducer from './densitySlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     time: timeReducer,
     thickness: thicknessReducer,
     weight: weightReducer,
+    density: densityReducer,
   },
 });
 

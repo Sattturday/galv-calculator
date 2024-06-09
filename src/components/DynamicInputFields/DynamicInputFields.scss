@@ -1,0 +1,27 @@
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/placeholders.scss';
+@import '../../styles/abstract/mixins.scss';
+
+.dynamic-button {
+  @include button;
+  @include text($color: $white);
+  width: 100%;
+  max-width: 16rem;
+  min-height: 5rem;
+  border-radius: 1rem;
+  background-color: $button;
+  outline: none;
+  @extend %transition-all;
+
+  &:hover {
+    background-color: $button-hover;
+  }
+
+  &_delete {
+    width: 3rem;
+    min-height: 3rem;
+    height: 3rem;
+    color: $disable;
+    background-color: transparent;
+  }
+}

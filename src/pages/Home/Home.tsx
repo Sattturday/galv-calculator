@@ -24,12 +24,12 @@ export const Home: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link className="home__card" to="/">
+            <Link className="home__card" to="/current-density">
               <p className="home__title">Расчет плотности тока</p>
             </Link>
           </li>
           <li>
-            <Link className="home__card" to="/">
+            <Link className="home__card" to="/current-force">
               <p className="home__title">Расчет силы тока</p>
             </Link>
           </li>

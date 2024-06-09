@@ -1,6 +1,13 @@
 // export const BASE_URL = 'http://89.104.70.160/api/';
 export const BASE_URL = 'http://89.111.175.252/api/';
 
+const units_SS = [
+  { title: 'м²', id: 'm2', param: 'м2' },
+  { title: 'дм²', id: 'dm2', param: 'дм2' },
+  { title: 'см²', id: 'sm2', param: 'см2' },
+  { title: 'мм²', id: 'mm2', param: 'мм2' },
+];
+
 export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
   units_m: [
     { title: 'кг', id: 'kg', param: 'кг' },
@@ -15,12 +22,7 @@ export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
     { title: 'мг/Кл', id: 'mg/Kl', param: 'мг/Кл' },
     { title: 'г/(А∙ч)', id: 'g/(A*h)', param: 'г/(А∙ч)' },
   ],
-  units_S: [
-    { title: 'м²', id: 'm2', param: 'м2' },
-    { title: 'дм²', id: 'dm2', param: 'дм2' },
-    { title: 'см²', id: 'sm2', param: 'см2' },
-    { title: 'мм²', id: 'mm2', param: 'мм2' },
-  ],
+  units_S: units_SS,
   units_j: [
     { title: 'А/дм²', id: 'A/dm2', param: 'А/дм2' },
     { title: 'мА/см²', id: 'mA/sm2', param: 'мА/см2' },
@@ -43,4 +45,24 @@ export const unitsButtons: { [key: string]: { [key: string]: string }[] } = {
     { title: 'мм', id: 'mm', param: 'мм' },
     { title: 'мкм', id: 'mkm', param: 'мкм' },
   ],
+  units_S1: units_SS,
+  units_S2: units_SS,
+  units_S3: units_SS,
+  units_S4: units_SS,
+  units_S5: units_SS,
+  units_S6: units_SS,
+  units_S7: units_SS,
+  units_S8: units_SS,
+  units_S9: units_SS,
+  units_S10: units_SS,
+  units_S11: units_SS,
+  units_S12: units_SS,
+  units_S13: units_SS,
+  units_S14: units_SS,
+  units_S15: units_SS,
+  units_S16: units_SS,
+  units_S17: units_SS,
+  units_S18: units_SS,
+  units_S19: units_SS,
+  units_S20: units_SS,
 };
