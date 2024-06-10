@@ -31,18 +31,6 @@ export const DensityCoverage: React.FC = () => {
     resetForm();
   };
 
-  const resetNumberValue = (possibleKeys: string[], density: Density) => {
-    const timeKeys = Object.keys(density.values);
-    for (const possibleKey of possibleKeys) {
-      let key: keyof Density | undefined;
-      if (timeKeys.includes(possibleKey)) key = possibleKey as keyof Density;
-      if (key !== undefined && density.values[key] !== null) {
-        dispatch(setNumberValue({ key: key, value: null }));
-        deleteValue(key);
-      }
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const params = buildParamsDensityObject(density);
@@ -92,7 +80,7 @@ export const DensityCoverage: React.FC = () => {
             onSubmit={handleSubmit}
             handleReset={newCalculationHandle}
           >
-            <fieldset className='fieldset'>
+            <fieldset className='fieldset fieldset_thin'>
               <p className='fieldset__title'>Сила тока</p>
               <InputNumber
                 setValue={setNumberValue}

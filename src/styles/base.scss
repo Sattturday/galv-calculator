@@ -80,6 +80,10 @@ html {
   gap: 1rem;
   border: 1px solid $border-active;
   border-radius: 1rem;
+
+  &_thin {
+    padding-right: 5rem;
+  }
 }
 
 .fieldset__title {

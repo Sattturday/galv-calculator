@@ -18,10 +18,17 @@
   }
 
   &_delete {
+    margin-top: 1.2rem;
     width: 3rem;
     min-height: 3rem;
     height: 3rem;
     color: $disable;
     background-color: transparent;
   }
+}
+
+.dynamic-no-button {
+  width: 3rem;
+  height: 3rem;
+  display: block;
 }

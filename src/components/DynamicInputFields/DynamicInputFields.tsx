@@ -66,14 +66,17 @@ export const DynamicInputFields = ({
             handleChange={handleChange}
           />
           <Units unitKey={`units_${field.name}`} addUnits={addUnits} name={stateName} />
-          {(fields.length === field.id && fields.length !== 1) &&
+          {(fields.length === field.id && fields.length !== 1) ?
             <button
               className='dynamic-button dynamic-button_delete'
               type='button'
               onClick={() => handleRemoveField(field.id, field.name)}
             >
               X
-            </button>}
+            </button>
+            :
+            <span className='dynamic-no-button'></span>
+          }
         </fieldset>
       ))}
       {fields.length < 20 &&
@@ -83,7 +86,8 @@ export const DynamicInputFields = ({
           onClick={handleAddField}
         >
           Добавить деталь
-        </button>}
+        </button>
+      }
     </div>
   );
 };
