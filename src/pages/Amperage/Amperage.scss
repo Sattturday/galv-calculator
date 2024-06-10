@@ -1,0 +1,61 @@
+@import '../../styles/abstract/mixins.scss';
+@import '../../styles/abstract/constants.scss';
+@import '../../styles/abstract/placeholders.scss';
+
+.amperage {
+  padding: 4rem 0;
+}
+
+.amperage__container {
+  padding: 1rem;
+  min-width: 85rem;
+  background-color: $bg-primary;
+  border: 1px solid $border;
+  border-radius: 1rem;
+}
+
+.amperage__wrap {
+  padding: 0 0 3rem;
+}
+
+.amperage__result {
+  width: 100%;
+  margin: 2rem auto 1rem;
+  padding-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 1px solid $border-active;
+
+  p {
+    @include text;
+  }
+}
+
+.amperage__result-value {
+  @include text($font-weight: $fw-semibold);
+  min-width: 10rem;
+  text-align: center;
+}
+
+.amperage__button {
+  @include button;
+  @include text($color: $white);
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 16rem;
+  min-height: 5rem;
+  border-radius: 1rem;
+  background-color: $button;
+  outline: none;
+  @extend %transition-all;
+
+  &:hover {
+    background-color: $button-hover;
+  }
+
+  &:active {
+    background-color: $button-hover;
+  }
+}

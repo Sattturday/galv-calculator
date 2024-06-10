@@ -11,17 +11,17 @@ interface Field {
 }
 
 interface DynamicInputFieldsProps {
-  stateName: 'density';
+  stateName: 'density' | 'amperage';
   addUnits: ActionCreatorWithPayload<{
     key: string;
     value: {
       [key: string]: string;
     };
-  }, 'density/addDensityUnits'>;
+  }, 'density/addDensityUnits' | 'amperage/addAmperageUnits'>;
   setNumberValue: ActionCreatorWithPayload<{
     key: string;
     value: number | null;
-  }, 'density/setNumberValue'>;
+  }, 'density/setNumberValue' | 'amperage/setNumberValue'>;
   deleteValue: (name: string) => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
   errors: Record<string, string>;

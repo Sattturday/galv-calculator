@@ -8,7 +8,7 @@ interface InputProps {
   setValue: ActionCreatorWithPayload<{
     key: string;
     value: number | null;
-  }, "time/setNumberValue" | "thickness/setNumberValue" | "weight/setNumberValue" | 'density/setNumberValue'>
+  }, "time/setNumberValue" | "thickness/setNumberValue" | "weight/setNumberValue" | 'density/setNumberValue' | 'amperage/setNumberValue'>
   name: string;
   isRequired?: boolean;
   errors: Record<string, string>;

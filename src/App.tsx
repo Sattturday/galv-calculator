@@ -5,7 +5,7 @@ import { Home } from './pages/Home';
 import { TimeCoverage } from './pages/Time';
 import { WeightCoverage } from './pages/Weight';
 import { DensityCoverage } from './pages/Density';
-import { Force } from './pages/Force';
+import { AmperagePage } from './pages/Amperage';
 import { ThicknessCoverage } from './pages/Thickness';
 
 const App: React.FC = () => {
@@ -19,7 +19,7 @@ const App: React.FC = () => {
           <Route path="/thickness-coverage" element={<ThicknessCoverage />} />
           <Route path="/weight-coverage" element={<WeightCoverage />} />
           <Route path="/current-density" element={<DensityCoverage />} />
-          <Route path="/current-force" element={<Force />} />
+          <Route path="/amperage" element={<AmperagePage />} />
         </Routes>
       </main>
     </>

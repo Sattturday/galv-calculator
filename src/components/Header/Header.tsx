@@ -59,7 +59,7 @@ export const Header: FC = () => {
             </li>
             <li className="navigation__box">
               <NavLink
-                to="/current-force"
+                to="/amperage"
                 className={({ isActive }) => {
                   return isActive
                     ? 'navigation__item navigation__item_type_active'

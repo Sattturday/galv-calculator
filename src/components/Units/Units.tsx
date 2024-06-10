@@ -5,19 +5,19 @@ import { hasOwnPropertyFromUnknown } from '../../utils/hasOwnPropertyFromUnknown
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { unitsButtons } from '../../utils/data';
-import { Thickness, Time } from '../../types/data';
+import { Thickness, Time, Weight, Density, Amperage } from '../../types/data';
 
 import './Units.scss';
 
 interface UnitsProps {
-  unitKey: keyof Time['units'] | keyof Thickness['units'] | 'result_units';
+  unitKey: keyof Time['units'] | keyof Thickness['units'] | keyof Weight['units'] | keyof Density['units'] | keyof Amperage['units'] | 'result_units';
   addUnits: ActionCreatorWithPayload<{
     key: string;
     value: {
       [key: string]: string;
     };
-  }, "time/addTimeUnits" | "thickness/addThicknessUnits" | "thickness/addResultUnits" | "weight/addWeightUnits" | 'density/addDensityUnits'>;
-  name: 'time' | "thickness" | "weight" | 'density';
+  }, "time/addTimeUnits" | "thickness/addThicknessUnits" | "thickness/addResultUnits" | "weight/addWeightUnits" | 'density/addDensityUnits' | 'amperage/addAmperageUnits'>;
+  name: 'time' | "thickness" | "weight" | 'density' | 'amperage';
 }
 
 export const Units: React.FC<UnitsProps> = ({ unitKey, addUnits, name }) => {

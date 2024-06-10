@@ -29,7 +29,7 @@ export const Home: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link className="home__card" to="/current-force">
+            <Link className="home__card" to="/amperage">
               <p className="home__title">Расчет силы тока</p>
             </Link>
           </li>

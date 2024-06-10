@@ -91,3 +91,20 @@ export const DensitySchema = z.object({
   error: z.nullable(z.string()),
 });
 export type Density = z.infer<typeof DensitySchema>;
+
+
+// Схема для результата силы тока
+const AmperageResultSchema = z.object({
+  I: z.number(),
+});
+export type AmperageResult = z.infer<typeof AmperageResultSchema>;
+
+// Схема для силы тока
+export const AmperageSchema = z.object({
+  resultAmperage: z.nullable(AmperageResultSchema),
+  values: z.record(z.union([z.number(), z.null()])),
+  units: z.record(UnitsSchema),
+  loading: z.boolean(),
+  error: z.nullable(z.string()),
+});
+export type Amperage = z.infer<typeof AmperageSchema>;
