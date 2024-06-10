@@ -1,5 +1,6 @@
 // export const BASE_URL = 'http://89.104.70.160/api/';
-export const BASE_URL = 'http://89.111.175.252/api/';
+// export const BASE_URL = 'http://89.111.175.252/api/';
+export const BASE_URL = 'https://www.gal-calc.ru/api/';
 
 const units_SS = [
   { title: 'м²', id: 'm2', param: 'м2' },

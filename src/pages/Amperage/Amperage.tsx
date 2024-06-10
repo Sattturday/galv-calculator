@@ -64,7 +64,7 @@ export const AmperagePage: React.FC = () => {
           {result && !amperage.error && (
             <div className='amperage__result'>
               <p>
-                Плотность тока:
+                Сила тока:
               </p>
               <span className='amperage__result-value'>
                 {amperage.resultAmperage ? amperage.resultAmperage.I : 'Нет результата в'} А
