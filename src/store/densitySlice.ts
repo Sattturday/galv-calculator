@@ -80,6 +80,28 @@ const initialState: Density = {
     units_S19: { title: 'м²', id: 'm2', param: 'м2' },
     units_S20: { title: 'м²', id: 'm2', param: 'м2' },
   },
+  counts: {
+    count_S1: 1,
+    count_S2: 1,
+    count_S3: 1,
+    count_S4: 1,
+    count_S5: 1,
+    count_S6: 1,
+    count_S7: 1,
+    count_S8: 1,
+    count_S9: 1,
+    count_S10: 1,
+    count_S11: 1,
+    count_S12: 1,
+    count_S13: 1,
+    count_S14: 1,
+    count_S15: 1,
+    count_S16: 1,
+    count_S17: 1,
+    count_S18: 1,
+    count_S19: 1,
+    count_S20: 1,
+  },
   resultDensity: null,
   loading: false,
   error: null,
@@ -113,6 +135,18 @@ const densitySlice = createSlice({
         state.values[key] = value;
       }
     },
+    setCountValue(
+      state,
+      action: PayloadAction<{ key: string; value: number | null }>,
+    ) {
+      const { key, value } = action.payload;
+      if (
+        hasOwnPropertyFromUnknown(state.counts, key) &&
+        key.startsWith('count_')
+      ) {
+        state.counts[key] = value !== null ? value : 1;
+      }
+    },
   },
   extraReducers: builder => {
     builder
@@ -131,7 +165,8 @@ const densitySlice = createSlice({
   },
 });
 
-export const { setNumberValue, addDensityUnits } = densitySlice.actions;
+export const { setNumberValue, setCountValue, addDensityUnits } =
+  densitySlice.actions;
 
 export default densitySlice.reducer;
 

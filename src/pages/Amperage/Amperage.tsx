@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchAmperage, setNumberValue, addAmperageUnits } from '../../store/amperageSlice';
+import { fetchAmperage, setNumberValue, addAmperageUnits, setCountValue } from '../../store/amperageSlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { buildParamsAmperageObject } from '../../utils/buildParams';
-import { Amperage, AmperageResult } from '../../types/data';
+import { AmperageResult } from '../../types/data';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { DynamicInputFields } from '../../components/DynamicInputFields';
 import { InputNumber } from '../../components/InputNumber';
@@ -95,6 +95,7 @@ export const AmperagePage: React.FC = () => {
               stateName='amperage'
               addUnits={addAmperageUnits}
               setNumberValue={setNumberValue}
+              setCountValue={setCountValue}
               deleteValue={deleteValue}
               handleChange={handleChange}
               errors={errors}

@@ -58,12 +58,13 @@ export function buildParamsDensityObject(values: Density) {
   }
 
   for (const key in values.values) {
-    numberValues[key] = values.values[key];
+    const count = values.counts[`count_${key}`];
+    const value = values.values[key];
+    numberValues[key] = value !== null ? value * count : null;
   }
 
   return { ...params, ...units, ...numberValues };
 }
-
 
 export function buildParamsAmperageObject(values: Amperage) {
   const params: { [key: string]: string | number | null } = {};
@@ -75,7 +76,9 @@ export function buildParamsAmperageObject(values: Amperage) {
   }
 
   for (const key in values.values) {
-    numberValues[key] = values.values[key];
+    const count = values.counts[`count_${key}`];
+    const value = values.values[key];
+    numberValues[key] = value !== null ? value * count : null;
   }
 
   return { ...params, ...units, ...numberValues };

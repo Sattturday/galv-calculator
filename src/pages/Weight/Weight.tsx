@@ -248,7 +248,7 @@ export const WeightCoverage: React.FC = () => {
                   min='0.01'
                   max='100'
                 />
-                <p className='fieldset__percent'>%</p>
+                <p className='fieldset__text'>%</p>
               </fieldset>
             )}
           </Form>

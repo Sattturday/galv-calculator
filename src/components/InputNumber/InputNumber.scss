@@ -5,6 +5,14 @@
 .input-number {
   width: 26rem;
   position: relative;
+
+  &_count {
+    width: 7.5rem;
+
+    .input-number__field {
+      width: 100%;
+    }
+  }
 }
 
 .input-number__name {

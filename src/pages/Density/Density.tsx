@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchDensity, setNumberValue, addDensityUnits } from '../../store/densitySlice';
+import { fetchDensity, setNumberValue, addDensityUnits, setCountValue } from '../../store/densitySlice';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { buildParamsDensityObject } from '../../utils/buildParams';
-import { Density, DensityResult } from '../../types/data';
+import { DensityResult } from '../../types/data';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { DynamicInputFields } from '../../components/DynamicInputFields';
 import { InputNumber } from '../../components/InputNumber';
@@ -95,6 +95,7 @@ export const DensityCoverage: React.FC = () => {
               stateName='density'
               addUnits={addDensityUnits}
               setNumberValue={setNumberValue}
+              setCountValue={setCountValue}
               deleteValue={deleteValue}
               handleChange={handleChange}
               errors={errors}

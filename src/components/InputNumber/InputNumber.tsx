@@ -1,14 +1,16 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
+import { AllowedActionTypes } from '../../types/data';
 import { useAppDispatch } from '../../hook';
 import './InputNumber.scss';
 
 interface InputProps {
+  type?: 'number' | 'count';
   setValue: ActionCreatorWithPayload<{
     key: string;
     value: number | null;
-  }, "time/setNumberValue" | "thickness/setNumberValue" | "weight/setNumberValue" | 'density/setNumberValue' | 'amperage/setNumberValue'>
+  }, AllowedActionTypes>
   name: string;
   isRequired?: boolean;
   errors: Record<string, string>;
@@ -21,6 +23,7 @@ interface InputProps {
 }
 
 export const InputNumber = ({
+  type = 'number',
   setValue,
   name,
   errors,
@@ -34,6 +37,12 @@ export const InputNumber = ({
 }: InputProps) => {
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (name.startsWith('count_')) {
+
+    }
+  }, [])
+
   const onChange = (key: string, value: number) => {
     if (key === 'wt') {
       const value_wt = +(value / 100).toFixed(4);
@@ -44,7 +53,7 @@ export const InputNumber = ({
   };
 
   return (
-    <label className="input-number">
+    <label className={`input-number input-number_${type}`} >
       <input
         className={`input-number__field${(errors[name] && ' input-number__field_type_error') || ''
           }`}
@@ -60,7 +69,7 @@ export const InputNumber = ({
           handleChange(e);
           onChange(name, +value);
         }}
-        required
+        required={!name.startsWith('count_')}
         {...props}
       />
       <span className="input-number__error">{errors[name]}</span>

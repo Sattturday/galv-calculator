@@ -87,11 +87,11 @@ export const DensitySchema = z.object({
   resultDensity: z.nullable(DensityResultSchema),
   values: z.record(z.union([z.number(), z.null()])),
   units: z.record(UnitsSchema),
+  counts: z.record(z.number()),
   loading: z.boolean(),
   error: z.nullable(z.string()),
 });
 export type Density = z.infer<typeof DensitySchema>;
-
 
 // Схема для результата силы тока
 const AmperageResultSchema = z.object({
@@ -104,7 +104,21 @@ export const AmperageSchema = z.object({
   resultAmperage: z.nullable(AmperageResultSchema),
   values: z.record(z.union([z.number(), z.null()])),
   units: z.record(UnitsSchema),
+  counts: z.record(z.number()),
   loading: z.boolean(),
   error: z.nullable(z.string()),
 });
 export type Amperage = z.infer<typeof AmperageSchema>;
+
+export type AllowedNumberTypes =
+  | 'density/setNumberValue'
+  | 'amperage/setNumberValue'
+  | 'time/setNumberValue'
+  | 'thickness/setNumberValue'
+  | 'weight/setNumberValue';
+
+export type AllowedCountTypes =
+  | 'density/setCountValue'
+  | 'amperage/setCountValue';
+
+export type AllowedActionTypes = AllowedNumberTypes | AllowedCountTypes;
