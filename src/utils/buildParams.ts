@@ -1,7 +1,6 @@
 import { Amperage, Density, Thickness, Time, Weight } from '../types/data';
 
 export function buildParamsTimeObject(values: Time) {
-  const params: { [key: string]: string | number | null } = {};
   const units: { [key: string]: string } = {};
   const numberValues: { [key: string]: number | null } = {};
 
@@ -13,11 +12,10 @@ export function buildParamsTimeObject(values: Time) {
     numberValues[key] = values.values[key];
   }
 
-  return { ...params, ...units, ...numberValues };
+  return { ...units, ...numberValues };
 }
 
 export function buildParamsThicknessObject(values: Thickness) {
-  const params: { [key: string]: string | number | null } = {};
   const units: { [key: string]: string } = {};
   const numberValues: { [key: string]: number | null } = {};
 
@@ -29,11 +27,10 @@ export function buildParamsThicknessObject(values: Thickness) {
     numberValues[key] = values.values[key];
   }
 
-  return { ...params, ...units, ...numberValues };
+  return { ...units, ...numberValues };
 }
 
 export function buildParamsWeightObject(values: Weight) {
-  const params: { [key: string]: string | number | null } = {};
   const units: { [key: string]: string } = {};
   const numberValues: { [key: string]: number | null } = {};
 
@@ -45,11 +42,10 @@ export function buildParamsWeightObject(values: Weight) {
     numberValues[key] = values.values[key];
   }
 
-  return { ...params, ...units, ...numberValues };
+  return { ...units, ...numberValues };
 }
 
 export function buildParamsDensityObject(values: Density) {
-  const params: { [key: string]: string | number | null } = {};
   const units: { [key: string]: string } = {};
   const numberValues: { [key: string]: number | null } = {};
 
@@ -60,14 +56,17 @@ export function buildParamsDensityObject(values: Density) {
   for (const key in values.values) {
     const count = values.counts[`count_${key}`];
     const value = values.values[key];
-    numberValues[key] = value !== null ? value * count : null;
+    if (count !== undefined) {
+      numberValues[key] = value !== null ? value * count : null;
+    } else {
+      numberValues[key] = value;
+    }
   }
 
-  return { ...params, ...units, ...numberValues };
+  return { ...units, ...numberValues };
 }
 
 export function buildParamsAmperageObject(values: Amperage) {
-  const params: { [key: string]: string | number | null } = {};
   const units: { [key: string]: string } = {};
   const numberValues: { [key: string]: number | null } = {};
 
@@ -78,8 +77,12 @@ export function buildParamsAmperageObject(values: Amperage) {
   for (const key in values.values) {
     const count = values.counts[`count_${key}`];
     const value = values.values[key];
-    numberValues[key] = value !== null ? value * count : null;
+    if (count !== undefined) {
+      numberValues[key] = value !== null ? value * count : null;
+    } else {
+      numberValues[key] = value;
+    }
   }
 
-  return { ...params, ...units, ...numberValues };
+  return { ...units, ...numberValues };
 }
