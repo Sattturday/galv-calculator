@@ -47,6 +47,18 @@ html {
   position: relative;
   display: flex;
   justify-content: center;
+
+  @include media-medium {
+    padding: 0 12rem;
+  }
+
+  @include media-laptop {
+    padding: 0 8rem;
+  }
+
+  @include media-tablet {
+    padding: 0 4rem;
+  }
 }
 
 .background {

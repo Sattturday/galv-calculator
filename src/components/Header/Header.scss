@@ -10,22 +10,46 @@
   nav {
     width: 100%;
   }
+
+  @include media-tablet {
+    padding: 2rem 0;
+  }
 }
 
 .navigation {
   @include list;
   margin: auto;
-  max-width: 128rem;
+  max-width: $medium-width;
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @include media-tablet {
+    max-width: $small-width;
+  }
+
+  @include media-small {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  @include media-mobile {
+    flex-direction: column;
+  }
 }
 
 .navigation__box {
   padding: 0.5rem;
   border-radius: 0.8rem;
 
-  &:hover {
+  @include media-hover {
+    &:hover {
+      background-color: $white;
+    }
+  }
+
+  @include media-tablet {
     background-color: $white;
   }
 }
@@ -38,5 +62,15 @@
 
   &_type_active {
     @include text($font-size: 1.6rem, $font-weight: $fw-semibold);
+  }
+
+  @include media-tablet {
+    @include text($font-size: 1.2rem);
+    width: 10rem;
+  }
+
+  @include media-mobile {
+    width: 100%;
+    justify-content: center;
   }
 }
