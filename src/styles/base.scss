@@ -59,6 +59,10 @@ html {
   @include media-tablet {
     padding: 0 4rem;
   }
+
+  @include media-mobile {
+    padding: 0 2rem;
+  }
 }
 
 .background {
@@ -96,12 +100,23 @@ html {
   &_thin {
     padding-right: 5rem;
   }
+
+  @include media-small {
+    margin-bottom: 1rem;
+    justify-content: flex-end;
+  }
 }
 
 .fieldset__title {
   @include text;
   margin-right: auto;
   padding-top: 1.2rem;
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding-top: 0.6rem;
+    margin-right: auto;
+  }
 }
 
 .fieldset__text {
@@ -111,5 +126,10 @@ html {
 
   &_count {
     margin-right: 0;
+  }
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding-top: 0.6rem;
   }
 }
