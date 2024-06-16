@@ -91,6 +91,7 @@ html {
   margin: 0;
   margin-bottom: 2rem;
   padding: 1rem;
+  position: relative;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -98,12 +99,20 @@ html {
   border-radius: 1rem;
 
   &_thin {
-    padding-right: 5rem;
+    padding-right: 4.3rem;
   }
 
   @include media-small {
     margin-bottom: 1rem;
     justify-content: flex-end;
+
+    &_dynamic {
+      flex-wrap: wrap;
+    }
+
+    &_thin {
+      padding-right: 3.8rem;
+    }
   }
 
   @include media-mobile {
@@ -124,6 +133,10 @@ html {
     @include text($font-size: 1.4rem);
     padding-top: 0.6rem;
     margin-right: auto;
+  }
+
+  @include media-mobile {
+    padding-top: 0;
   }
 }
 

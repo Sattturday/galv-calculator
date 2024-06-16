@@ -61,43 +61,44 @@ export const DynamicInputFields = ({
   };
 
   return (
-    <div>
+    <>
       {fields.map(field => (
         <fieldset key={field.id} className='fieldset fieldset_dynamic'>
           <p className='fieldset__title'>{`Площадь ${field.id} детали`}</p>
-          <InputNumber
-            setValue={setNumberValue}
-            name={field.name}
-            errors={errors}
-            values={values}
-            handleChange={handleChange}
-          />
-          <Units unitKey={`units_${field.name}`} addUnits={addUnits} name={stateName} />
-          <p className='fieldset__text fieldset__text_count'>x</p>
-          <InputNumber
-            type='count'
-            setValue={setCountValue}
-            name={`count_${field.name}`}
-            errors={errors}
-            values={values}
-            handleChange={handleChange}
-            placeholder='1'
-            step='1'
-            min='1'
-            max='100'
-          />
-          <p className='fieldset__text fieldset__text_count'>шт</p>
-          {(fields.length === field.id && fields.length !== 1) ?
+          <div className="fieldset__wrap">
+            <InputNumber
+              setValue={setNumberValue}
+              name={field.name}
+              errors={errors}
+              values={values}
+              handleChange={handleChange}
+            />
+            <Units unitKey={`units_${field.name}`} addUnits={addUnits} name={stateName} />
+          </div>
+          <div className="fieldset__wrap">
+            <p className='fieldset__text fieldset__text_count'>x</p>
+            <InputNumber
+              type='count'
+              setValue={setCountValue}
+              name={`count_${field.name}`}
+              errors={errors}
+              values={values}
+              handleChange={handleChange}
+              placeholder='1'
+              step='1'
+              min='1'
+              max='100'
+            />
+            <p className='fieldset__text fieldset__text_count'>шт</p>
+          </div>
+          {(fields.length === field.id && fields.length !== 1) &&
             <button
               className='dynamic-button dynamic-button_delete'
               type='button'
               onClick={() => handleRemoveField(field.id, field.name)}
             >
               X
-            </button>
-            :
-            <span className='dynamic-no-button'></span>
-          }
+            </button>}
         </fieldset>
       ))}
       {fields.length < 20 &&
@@ -109,7 +110,7 @@ export const DynamicInputFields = ({
           Добавить деталь
         </button>
       }
-    </div>
+    </>
   );
 };
 

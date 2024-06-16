@@ -46,6 +46,10 @@
   @include text($font-weight: $fw-semibold);
   min-width: 10rem;
   text-align: center;
+
+  @include media-small {
+    @include text($font-size: 1.4rem, $font-weight: $fw-semibold);
+  }
 }
 
 .amperage__button {
