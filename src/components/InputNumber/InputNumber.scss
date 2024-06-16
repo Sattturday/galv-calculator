@@ -3,8 +3,9 @@
 @import '../../styles/abstract/mixins.scss';
 
 .input-number {
-  width: 26rem;
+  width: 16rem;
   position: relative;
+  flex-shrink: 0;
 
   &_count {
     width: 7.5rem;
@@ -22,7 +23,7 @@
 .input-number__field {
   @include text;
   padding: 1.6rem;
-  width: 55%;
+  width: 80%;
   box-sizing: border-box;
   background-color: $white;
   border: 1px solid $border;
@@ -70,10 +71,15 @@
   &:-webkit-autofill {
     -webkit-text-fill-color: $black;
   }
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding: 1rem;
+  }
 }
 
 .input-number__error {
-  min-height: 2.4rem;
+  min-height: 1.4rem;
   display: flex;
   align-items: center;
   color: $error;

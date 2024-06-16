@@ -105,6 +105,14 @@ html {
     margin-bottom: 1rem;
     justify-content: flex-end;
   }
+
+  @include media-mobile {
+    flex-direction: column;
+  }
+}
+
+.fieldset__wrap {
+  display: flex;
 }
 
 .fieldset__title {
