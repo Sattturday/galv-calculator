@@ -32,6 +32,10 @@
       transform: rotate(180deg);
     }
   }
+
+  @include media-small {
+    height: 3.8rem;
+  }
 }
 
 .sort__arrow {
@@ -50,6 +54,11 @@
   padding: 1.2rem;
   width: 100%;
   justify-content: space-between;
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding: 1rem;
+  }
 }
 
 .sort__list {
@@ -95,12 +104,23 @@
     @include text;
   }
 
-  &:hover {
-    background-color: $bg-primary;
-    border-radius: 0.8rem;
+  @include media-small {
+    padding: 1rem;
+    height: 3.8rem;
 
     span {
-      @include text($font-weight: $fw-semibold);
+      @include text($font-size: 1.4rem);
+    }
+  }
+
+  @include media-hover {
+    &:hover {
+      background-color: $bg-primary;
+      border-radius: 0.8rem;
+
+      span {
+        @include text($font-weight: $fw-semibold);
+      }
     }
   }
 }

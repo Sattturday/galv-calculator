@@ -12,16 +12,13 @@
 
 .form__buttons {
   padding: 2rem 0 3rem;
-  max-width: 34rem;
   width: 100%;
   display: flex;
   gap: 1rem;
-  justify-self: end;
+  justify-content: end;
 
   @include media-small {
     padding: 1rem 0 2rem;
-    justify-self: center;
-    justify-content: center;
   }
 }
 
