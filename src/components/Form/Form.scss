@@ -36,8 +36,10 @@
   outline: none;
   @extend %transition-all;
 
-  &:hover {
-    background-color: $button-hover;
+  @include media-hover {
+    &:hover {
+      background-color: $button-hover;
+    }
   }
 
   &:active {

@@ -12,6 +12,10 @@
   border-bottom: 1px solid $border-active;
   gap: 1.2rem;
   cursor: pointer;
+
+  @include media-mobile {
+    padding: 1.2rem 0 1.4rem;
+  }
 }
 
 .checkbox__input {
@@ -28,11 +32,19 @@
   min-height: 2.8rem;
   display: flex;
   justify-content: space-between;
+  flex-shrink: 0;
   background-image: url(../../images/icons/checkbox-off.svg);
   background-size: 5.2rem;
   background-repeat: no-repeat;
   background-position: 6.5rem;
   transition: background-image 0.4s ease-in-out;
+
+  @include media-small {
+    width: 13.2rem;
+    min-height: 2.8rem;
+    background-size: 3.2rem;
+    background-position: 5.3rem;
+  }
 }
 
 .checkbox__input:checked + .checkbox__input-new {
@@ -41,8 +53,16 @@
 
 .checkbox__title {
   @include text;
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+  }
 }
 
 .checkbox__subtitle {
   @include text;
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+  }
 }
