@@ -7,16 +7,34 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid $border-active;
+
+  @include media-mobile {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .input__name {
   @include text;
   padding-top: 1.2rem;
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding-top: 1rem;
+  }
+
+  @include media-mobile {
+    padding-top: 0;
+  }
 }
 
 .input__wrap {
   width: 50%;
   position: relative;
+
+  @include media-mobile {
+    width: 100%;
+  }
 }
 
 .input__field {
@@ -70,6 +88,11 @@
   &:-webkit-autofill {
     -webkit-text-fill-color: $black;
   }
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    padding: 1rem;
+  }
 }
 
 .input__error {
@@ -97,6 +120,11 @@
 
   &_active {
     transform: rotate(180deg);
+  }
+
+  @include media-small {
+    top: 1.5rem;
+    right: 1.3rem;
   }
 }
 
@@ -126,6 +154,13 @@
     overflow-y: auto;
     @include scrollbars;
   }
+
+  @include media-small {
+    &_active {
+      top: 3.8rem;
+      max-height: 12.2rem;
+    }
+  }
 }
 
 .material__button {
@@ -139,10 +174,17 @@
   @extend %transition-all;
   @include text;
 
-  &:hover {
-    background-color: $bg-primary;
-    border-radius: 0.8rem;
+  @include media-hover {
+    &:hover {
+      background-color: $bg-primary;
+      border-radius: 0.8rem;
 
-    @include text($font-weight: $fw-semibold);
+      @include text($font-weight: $fw-semibold);
+    }
+  }
+
+  @include media-small {
+    @include text($font-size: 1.4rem);
+    height: 3.8rem;
   }
 }
