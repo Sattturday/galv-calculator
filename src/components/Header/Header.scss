@@ -67,6 +67,10 @@
   @include media-tablet {
     @include text($font-size: 1.2rem);
     width: 10rem;
+
+    &_type_active {
+      @include text($font-size: 1.2rem, $font-weight: $fw-semibold);
+    }
   }
 
   @include media-mobile {
