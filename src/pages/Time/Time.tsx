@@ -152,106 +152,122 @@ export const TimeCoverage: React.FC = () => {
             {(knownValues === 'only_m' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность тока</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='j'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_j' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='j'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_j' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'all') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Сила тока</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='I'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_I' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='I'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_I' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'only_m') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Площадь покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='S'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_S' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='S'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_S' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Толщина покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='h'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_h' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='h'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_h' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'only_I' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='p'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_p' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='p'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_p' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'only_m' || knownValues === 'all') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Масса покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='m'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_m' addUnits={addTimeUnits} name='time' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='m'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_m' addUnits={addTimeUnits} name='time' />
+                </div>
               </fieldset>
             )}
             <fieldset className='fieldset'>
               <p className='fieldset__title'>Электрохимический эквивалент</p>
-              <InputNumber
-                setValue={setNumberValue}
-                name='q'
-                errors={errors}
-                values={values}
-                handleChange={handleChange}
-              />
-              <Units unitKey='units_q' addUnits={addTimeUnits} name='time' />
+              <div className="fieldset__wrap">
+                <InputNumber
+                  setValue={setNumberValue}
+                  name='q'
+                  errors={errors}
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <Units unitKey='units_q' addUnits={addTimeUnits} name='time' />
+              </div>
             </fieldset>
             <fieldset className='fieldset'>
               <p className='fieldset__title'>Выход по току</p>
-              <InputNumber
-                setValue={setNumberValue}
-                name='wt'
-                errors={errors}
-                values={values}
-                handleChange={handleChange}
-                placeholder='0.00'
-                step='0.01'
-                min='0.01'
-                max='100'
-              />
-              <p className='fieldset__text'>%</p>
+              <div className="fieldset__wrap">
+                <InputNumber
+                  setValue={setNumberValue}
+                  name='wt'
+                  errors={errors}
+                  values={values}
+                  handleChange={handleChange}
+                  placeholder='0.00'
+                  step='0.01'
+                  min='0.01'
+                  max='100'
+                />
+                <p className='fieldset__text'>%</p>
+              </div>
             </fieldset>
           </Form>
         </div>

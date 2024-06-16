@@ -3,12 +3,13 @@
 @import '../../styles/abstract/placeholders.scss';
 
 .thickness {
-  padding: 4rem 0;
+  @include page-padding;
 }
 
 .thickness__container {
   padding: 1rem;
-  min-width: 85rem;
+  max-width: 85rem;
+  width: 100%;
   background-color: $bg-primary;
   border: 1px solid $border;
   border-radius: 1rem;
@@ -31,6 +32,28 @@
   p {
     @include text;
   }
+
+  @include media-small {
+    padding-bottom: 2rem;
+
+    p {
+      @include text($font-size: 1.4rem);
+    }
+
+    span {
+      @include text($font-size: 1.4rem);
+    }
+  }
+
+  @include media-mobile {
+    flex-direction: column;
+  }
+}
+
+.thickness__result-wrap {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .thickness__result-value {
@@ -51,8 +74,10 @@
   outline: none;
   @extend %transition-all;
 
-  &:hover {
-    background-color: $button-hover;
+  @include media-hover {
+    &:hover {
+      background-color: $button-hover;
+    }
   }
 
   &:active {

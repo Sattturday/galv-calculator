@@ -129,3 +129,15 @@
     height: 40px;
   }
 }
+
+@mixin page-padding {
+  padding: 4rem 0;
+
+  @include media-small {
+    padding: 2rem 0;
+  }
+
+  @include media-mobile {
+    padding: 1rem 0;
+  }
+}

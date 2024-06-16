@@ -13,7 +13,13 @@
   outline: none;
   @extend %transition-all;
 
-  &:hover {
+  @include media-hover {
+    &:hover {
+      background-color: $button-hover;
+    }
+  }
+
+  &:active {
     background-color: $button-hover;
   }
 

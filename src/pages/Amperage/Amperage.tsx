@@ -82,14 +82,16 @@ export const AmperagePage: React.FC = () => {
           >
             <fieldset className='fieldset fieldset_thin'>
               <p className='fieldset__title'>Плотность тока</p>
-              <InputNumber
-                setValue={setNumberValue}
-                name='j'
-                errors={errors}
-                values={values}
-                handleChange={handleChange}
-              />
-              <Units unitKey='units_j' addUnits={addAmperageUnits} name='amperage' />
+              <div className="fieldset__wrap">
+                <InputNumber
+                  setValue={setNumberValue}
+                  name='j'
+                  errors={errors}
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <Units unitKey='units_j' addUnits={addAmperageUnits} name='amperage' />
+              </div>
             </fieldset>
             <DynamicInputFields
               stateName='amperage'

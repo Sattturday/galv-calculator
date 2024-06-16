@@ -82,14 +82,16 @@ export const DensityCoverage: React.FC = () => {
           >
             <fieldset className='fieldset fieldset_thin'>
               <p className='fieldset__title'>Сила тока</p>
-              <InputNumber
-                setValue={setNumberValue}
-                name='I'
-                errors={errors}
-                values={values}
-                handleChange={handleChange}
-              />
-              <Units unitKey='units_I' addUnits={addDensityUnits} name='density' />
+              <div className="fieldset__wrap">
+                <InputNumber
+                  setValue={setNumberValue}
+                  name='I'
+                  errors={errors}
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <Units unitKey='units_I' addUnits={addDensityUnits} name='density' />
+              </div>
             </fieldset>
             <DynamicInputFields
               stateName='density'

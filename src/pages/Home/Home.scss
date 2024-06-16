@@ -4,6 +4,14 @@
 
 .home {
   padding: 10rem 0;
+
+  @include media-tablet {
+    padding: 5rem 0;
+  }
+
+  @include media-mobile {
+    padding: 2rem 0;
+  }
 }
 
 .home__container {
@@ -29,11 +37,20 @@
   border-radius: 1rem;
   @extend %transition-all;
 
+  &:active {
+    background-color: $bg-active;
+    border: 1px solid $border-active;
+  }
+
   @include media-hover {
     &:hover {
       background-color: $bg-active;
       border: 1px solid $border-active;
     }
+  }
+
+  @include media-tablet {
+    min-height: 12rem;
   }
 }
 

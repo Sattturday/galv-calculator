@@ -106,16 +106,18 @@ export const ThicknessCoverage: React.FC = () => {
               <p>
                 Толщина покрытия:
               </p>
-              <span className='thickness__result-value'>
-                {
-                  thickness.units.units_result.id === 'mkm'
-                    ? result.h
-                    : thickness.units.units_result.id === 'mm'
-                      ? result.h / 1000
-                      : result.h / 1000000
-                }
-              </span>
-              <Units unitKey='units_result' addUnits={addThicknessUnits} name='thickness' />
+              <div className="thickness__result-wrap">
+                <span className='thickness__result-value'>
+                  {
+                    thickness.units.units_result.id === 'mkm'
+                      ? result.h
+                      : thickness.units.units_result.id === 'mm'
+                        ? result.h / 1000
+                        : result.h / 1000000
+                  }
+                </span>
+                <Units unitKey='units_result' addUnits={addThicknessUnits} name='thickness' />
+              </div>
             </div>
           )}
           <Form
@@ -158,109 +160,125 @@ export const ThicknessCoverage: React.FC = () => {
             {(knownValues !== 'know_m' && knownValues === 'know_j') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Плотность тока</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='j'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_j' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='j'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_j' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
             {knownValues === 'none' && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Сила тока</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='I'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_I' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='I'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_I' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
             {knownValues !== 'know_j' && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Площадь покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='S'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_S' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='S'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_S' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'know_j' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Время покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='t'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_t' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='t'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_t' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'know_j' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Электрохимический эквивалент</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='q'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_q' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='q'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_q' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
             {(knownValues === 'know_j' || knownValues === 'none') && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Выход по току</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='wt'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                  placeholder='0.00'
-                  step='0.01'
-                  min='0.01'
-                  max='100'
-                />
-                <p className='fieldset__text'>%</p>
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='wt'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                    placeholder='0.00'
+                    step='0.01'
+                    min='0.01'
+                    max='100'
+                  />
+                  <p className='fieldset__text'>%</p>
+                </div>
               </fieldset>
             )}
 
             <fieldset className='fieldset'>
               <p className='fieldset__title'>Плотность покрытия</p>
-              <InputNumber
-                setValue={setNumberValue}
-                name='p'
-                errors={errors}
-                values={values}
-                handleChange={handleChange}
-              />
-              <Units unitKey='units_p' addUnits={addThicknessUnits} name='thickness' />
+              <div className="fieldset__wrap">
+                <InputNumber
+                  setValue={setNumberValue}
+                  name='p'
+                  errors={errors}
+                  values={values}
+                  handleChange={handleChange}
+                />
+                <Units unitKey='units_p' addUnits={addThicknessUnits} name='thickness' />
+              </div>
             </fieldset>
 
             {knownValues === 'know_m' && (
               <fieldset className='fieldset'>
                 <p className='fieldset__title'>Масса покрытия</p>
-                <InputNumber
-                  setValue={setNumberValue}
-                  name='m'
-                  errors={errors}
-                  values={values}
-                  handleChange={handleChange}
-                />
-                <Units unitKey='units_m' addUnits={addThicknessUnits} name='thickness' />
+                <div className="fieldset__wrap">
+                  <InputNumber
+                    setValue={setNumberValue}
+                    name='m'
+                    errors={errors}
+                    values={values}
+                    handleChange={handleChange}
+                  />
+                  <Units unitKey='units_m' addUnits={addThicknessUnits} name='thickness' />
+                </div>
               </fieldset>
             )}
           </Form>
