@@ -57,7 +57,7 @@ export function buildParamsDensityObject(values: Density) {
     const count = values.counts[`count_${key}`];
     const value = values.values[key];
     if (count !== undefined) {
-      numberValues[key] = value !== null ? value * count : null;
+      numberValues[key] = value !== null ? +(value * count).toFixed(4) : null;
     } else {
       numberValues[key] = value;
     }
@@ -78,7 +78,7 @@ export function buildParamsAmperageObject(values: Amperage) {
     const count = values.counts[`count_${key}`];
     const value = values.values[key];
     if (count !== undefined) {
-      numberValues[key] = value !== null ? value * count : null;
+      numberValues[key] = value !== null ? +(value * count).toFixed(4) : null;
     } else {
       numberValues[key] = value;
     }
